@@ -1,4 +1,4 @@
-# CodeVASP Compliance AI Skill
+# CodeVASP Compliance Core AI Skill
 
 This repository contains an AI Agent Skill specifically designed to assist developers integrating with the **CodeVASP** network. 
 
