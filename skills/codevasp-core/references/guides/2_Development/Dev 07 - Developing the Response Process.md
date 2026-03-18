@@ -8,4 +8,4 @@
 * The scope of incoming transfers and the receiving process may vary depending on your internal intake control policies.
 * We recommend reviewing your internal policies first.
 * Save all received ‘transferId’s.
-![](Dev%2007%20-%20Developing%20the%20Response%20Process%20-%2001.png)![](Dev%2007%20-%20Developing%20the%20Response%20Process%20-%2002.png)
+![](Dev 07 - Developing the Response Process - 01.png)![](Dev 07 - Developing the Response Process - 02.png)

@@ -1,6 +1,6 @@
 ---
 name: codevasp-travel-rule-guide
-description: Expert guidance on Travel Rule compliance, CodeVASP API integration, and IVMS101 data structures. Use for VASP discovery, transfer authorization, FAQ, and IVMS101 payload generation/validation.
+description: Expert guidance on Travel Rule compliance, CodeVASP Travel rule API integration, and IVMS101 data structures. Use for VASP discovery, transfer authorization, FAQ, and IVMS101 payload generation/validation.
 metadata: 
   tags: ["codevasp", "travel-rule", "IVMS101", "compliance"]
   author: "CodeVASP"
@@ -76,14 +76,6 @@ Before responding to user queries, consult the appropriate resources in the `ref
   - `04-7. Search VASP by TXID.md`
   - `04-8. Asset Transfer Data Request.md`
   - `04-9. Health Check.md`
-- **API 05 - More Services/**
-  - `05-1. Uppsala Wallet Screening.md`
-  - `05-2. Uppsala TXID Screening.md`
-- **API 06 - Unhosted Wallet/**
-  - `06-1. Intro.md`
-  - `06-2. Issue Token.md`
-  - `06-3. Render Widget.md`
-  - `06-4. Get Result.md`
 
 ### 3. Examples (`references/examples/`)
 - `asset-transfer-authorization-request-legal-2-legal-example.json`
@@ -115,7 +107,8 @@ When the user requests assistance with CodeVASP integrations, adhere rigorously 
 ### Workflow 1: Answering FAQ & Conceptual Questions
 1. Always start by scanning `references/guides/1_General/03_FAQ.md` and the IVMS101 guides in `2_Development/` to find authoritative answers.
 2. If the user asks about rules, alliances, or standards, retrieve the exact details (and any provided URLs) from the guides.
-3. Keep answers concise. If a topic has an example, point the developer to it instead of explaining extensively.
+3. The basic implementation for CodeVASP Travel rule standard process is with natural person (KYC) and legal person (KYB, Corporate) accounts.
+4. Keep answers concise. If a topic has an example, point the developer to it instead of explaining extensively.
 
 ### Workflow 2: Implementing the CodeVASP Protocol
 If a developer asks how to implement a specific request (e.g., "How do I authorize a transfer from a Legal Person to a Natural Person?"):
@@ -130,9 +123,6 @@ If the user provides a JSON payload to validate:
 1. **Schema Check**: Compare the payload deterministically against `references/schemas/json-schema.json`.
 2. **Rule Check**: Verify specific fields against the CodeVASP rules in the IVMS101 guides (e.g., string encoding must be UTF-8, case-insensitive values, etc.).
 3. **Provide Feedback**: Identify errors with line-item precision.
-
-### Workflow 4: Scripts & Automation
-1. If the user provides a JSON payload and automation scripts exist in the `scripts/` directory, utilize them to guarantee 100% verification accuracy.
 
 ## Compliance Constraints
 - **Do not invent instructions.** If something is not covered in the `references/` directories, inform the user that you cannot verify that specific detail and they should check the official CodeVASP Alliance documentation.

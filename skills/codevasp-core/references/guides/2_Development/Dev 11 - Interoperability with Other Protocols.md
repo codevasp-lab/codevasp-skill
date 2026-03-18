@@ -1,7 +1,7 @@
 # Dev 11 - Interoperability with Other Protocols
 
 ## 1. Check the VASP List
-![](Dev%2011%20-%20Interoperability%20with%20Other%20Protocols%20-%2001.png)
+![](Dev 11 - Interoperability with Other Protocols - 01.png)
   
 By checking the response of the 'VASP List Search' API or the 'Info - List of Available VASPs' page on the dashboard, you can view the list of VASPs and their respective `allianceName` (travel rule solution). Currently, CodeVASP is integrated with solutions such as Verify VASP, GTR, and Sygna, providing a wide-ranging network.
 

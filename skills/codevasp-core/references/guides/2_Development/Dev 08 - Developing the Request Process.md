@@ -8,4 +8,4 @@
 * The receiving VASP may manage a list of VASPs it accepts assets from (especially Korean VASPs).
     * A VASP outside of the list will get a rejection or error at the 'Virtual Asset Address Search' or 'Asset Transfer Authorization' process.
 
-![](Dev%2008%20-%20Developing%20the%20Request%20Process%20-%2001.png)![](Dev%2008%20-%20Developing%20the%20Request%20Process%20-%2002.png)
+![](Dev 08 - Developing the Request Process - 01.png)![](Dev 08 - Developing the Request Process - 02.png)
