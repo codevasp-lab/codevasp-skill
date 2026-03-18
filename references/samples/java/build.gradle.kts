@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     implementation("org.json:json:20230227")
-    implementation("com.goterl:lazysodium-java:5.1.4")
+    implementation("com.goterl:lazysodium-java:5.2.0")
     implementation(platform("org.apache.logging.log4j:log4j-bom:2.20.0"))
     implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.apache.logging.log4j:log4j-core")
