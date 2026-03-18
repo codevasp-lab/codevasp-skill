@@ -119,6 +119,7 @@ When the user requests assistance with CodeVASP integrations, adhere rigorously 
 
 ### Workflow 2: Implementing the CodeVASP Protocol
 If a developer asks how to implement a specific request (e.g., "How do I authorize a transfer from a Legal Person to a Natural Person?"):
+This skill supports VASP developers working on existing projects. As this will become part of their current software stack, the AI agent must maintain consistency with the existing codebase. Its goal is to implement the CodeVASP protocol within the VASP's deposit and withdrawal modules.
 1. **Explain the Flow**: Detail the conceptual flow using the relevant guides in `2_Development/`. Note specific caveats (e.g., Originator VASPs may only have partial info about Beneficiaries initially).
 2. **Provide Templates**: Pull the exact, corresponding JSON template from the `references/examples/` directory.
 3. **Step-by-Step Instructions**: Guide the developer on populating mandatory fields accurately using the API reference in `references/api/`.
