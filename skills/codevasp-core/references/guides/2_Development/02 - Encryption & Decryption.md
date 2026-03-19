@@ -9,31 +9,43 @@
 > - OPTION1. Use the Cipher module provided by CodeVASP →Move to 2. Cipher
 > - OPTION2. Custom Encryption → Move to 3. Custom Encryption
 ## 2. Cipher Module
-- Cipher is CODE's encryption module, distributed as a Docker image.
+- Cipher is CodeVASP's encryption module, distributed as a Docker image.
 * Please read [02-1. CodeVASP-Cipher Server Module Guide] and follow the instructions in the guide.
 * Use the Cipher response **as-is** for the CodeVASP API request.
 ```mermaid
 graph LR
-    %% Nodes
-    VASP["VASP"]
-    Cipher["Cipher"]
-    CODE_API["CodeVASP API"]
+%% Defining the VASP Inner Network Boundary
+	subgraph VASP_Inner_Network [VASP Inner Network]
 
-    %% Flow with Numbered Steps
-    VASP -- "1 Request" --> Cipher
-    Cipher -- "2 Response" --> VASP
-    VASP -- "3 Use the response as it is" --> CODE_API
+		subgraph Originator_VASP [Originator VASP]
+			A1["Start Process"]
+			A2["Create Actual Request With Encrypted Data"]
+			A3["Finish Process"]
+		end
 
-    %% Styling to match original visual
-    style VASP fill:#f5f5f5,stroke:#d3d3d3,stroke-width:1px
-    style Cipher fill:#f9d7d7,stroke:#f0a8a8,stroke-width:1px
-    style CODE_API fill:#d7f2f2,stroke:#a8e0e0,stroke-width:1px
+		subgraph CodeVASP_Cipher [CodeVASP Cipher]
+			B1["Validate & Encrypt & Create Payloads"]
+		end
 
-    %% Link Styling
-    linkStyle 0 stroke:#f0a8a8,stroke-width:2px,color:#f0a8a8
-    linkStyle 1 stroke:#5fb8b8,stroke-width:2px,color:#5fb8b8
-    linkStyle 2 stroke:#5fb8b8,stroke-width:2px,color:#5fb8b8
+	end
 
+%% External System
+	subgraph CodeVASP_External [CodeVASP]
+		C1["Process with Beneficiary VASP"]
+	end
+
+%% Internal Data Flow
+	A1 --> B1
+	B1 --> A2
+
+%% Cross-Network Data Flow
+	A2 --> C1
+	C1 --> A3
+
+%% Text Mapping and Logic Comments
+%% Node B1: Acts as a security middleware within the inner network.
+%% Node C1: Represents the handoff to the external beneficiary service.
+%% Final step A3: The flow returns to the Originator VASP to conclude.
 ```
 ## 3. Custom Encryption
 - Refer to the sample code if you perform encryption and decryption without using Cipher.

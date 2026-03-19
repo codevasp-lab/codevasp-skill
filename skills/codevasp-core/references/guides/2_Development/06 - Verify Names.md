@@ -79,55 +79,88 @@ Name verification may fail when communicating with certain Korean exchanges if n
 ## 3. Name Notation as an Originating VASP
 ### 3-1. Natural Person 
 ```mermaid
-flowchart TD
-    %% Root Decision
-    Start([User Name]) --> D1{"Is Beneficiary VASP<br/>Registered in Korea? (KR)"}
+graph TD
+%% Global Styling
+    classDef Array fill:#d1ecf1,stroke:#0c5460,color:#000;
+    classDef String fill:#f8d7da,stroke:#842029,color:#000;
+    classDef Decision fill:#eeeeee,stroke:#999999,color:#000,border-radius:20px;
 
-    %% NON-KR PATH (Priority: English Name)
-    D1 -- "No" --> N1_NI["'nameIdentifier'<br/>= English Name"]
-    
-    subgraph Non_KR ["Non-KR Destination Logic"]
-        N1_NI -- "No Name" --> N1_NI_Req["'primaryIdentifier': '',<br/>'secondaryIdentifier': ''<br/>(Mandatory Blank)"]
-        N1_NI_Req --> N1_LNI["'localNameIdentifier'<br/>= Local Name"]
-        
-        N1_NI -- "Has Name" --> D2{"Can split<br/>Surname/Given Name?"}
-        D2 -- "No" --> N1_NI_Full["'primaryIdentifier': 'Full Name'"]
-        D2 -- "Yes" --> N1_NI_Sep["'primaryIdentifier': 'Surname',<br/>'secondaryIdentifier': 'Given Name'"]
-        
-        N1_NI_Full & N1_NI_Sep --> N1_LNI
-        
-        N1_LNI --> D3{"Can split<br/>Surname/Given Name?"}
-        D3 -- "No" --> N1_LNI_Full["'primaryIdentifier': 'Full Name'"]
-        D3 -- "Yes" --> N1_LNI_Sep["'primaryIdentifier': 'Surname',<br/>'secondaryIdentifier': 'Given Name'"]
+    Root["User Name"]
+    MainDecision["Is Beneficiary VASP Registered in Korea?<br/>('countryOfRegistration' = 'KR')"]
+
+    Root --> MainDecision
+
+%% Left Branch: Not Registered in Korea (No)
+    subgraph Not_In_Korea [Beneficiary VASP Not in Korea]
+        L_NameId["'nameIdentifier'<br/>= English Name"]
+
+        L_Req["'primaryIdentifier': '',<br/>'secondaryIdentifier': ''"]
+
+        L_Dec1["Is the surname separated from the given name?"]
+        L_Opt1_No["'primaryIdentifier': 'Full Name',<br/>'secondaryIdentifier': ''"]
+        L_Opt1_Yes["'primaryIdentifier': 'Last Name',<br/>'secondaryIdentifier': 'First Name'"]
+
+        L_LocalId["'localNameIdentifier'<br/>= Local Name"]
+
+        L_Dec2["Is the surname separated from the given name?"]
+        L_Opt2_No["'primaryIdentifier': 'Full Name',<br/>'secondaryIdentifier': ''"]
+        L_Opt2_Yes["'primaryIdentifier': 'Last Name',<br/>'secondaryIdentifier': 'First Name'"]
     end
 
-    %% KR PATH (Priority: Local Name)
-    D1 -- "Yes" --> N2_NI["'nameIdentifier'<br/>= Local Name"]
+%% Right Branch: Registered in Korea (Yes)
+    subgraph In_Korea [Beneficiary VASP In Korea]
+        R_NameId["'nameIdentifier'<br/>= Local Name"]
 
-    subgraph KR_Destination ["KR Destination Logic"]
-        N2_NI -- "No Name" --> N2_NI_Req["'primaryIdentifier': '',<br/>'secondaryIdentifier': ''<br/>(Mandatory Blank)"]
-        N2_NI_Req --> N2_LNI["'localNameIdentifier'<br/>= English Name"]
-        
-        N2_NI -- "Has Name" --> D4{"Can split<br/>Surname/Given Name?"}
-        D4 -- "No" --> N2_NI_Full["'primaryIdentifier': 'Full Name'"]
-        D4 -- "Yes" --> N2_NI_Sep["'primaryIdentifier': 'Surname',<br/>'secondaryIdentifier': 'Given Name'"]
-        
-        N2_NI_Full & N2_NI_Sep --> N2_LNI
-        
-        N2_LNI --> D5{"Can split<br/>Surname/Given Name?"}
-        D5 -- "No" --> N2_LNI_Full["'primaryIdentifier': 'Full Name'"]
-        D5 -- "Yes" --> N2_LNI_Sep["'primaryIdentifier': 'Surname',<br/>'secondaryIdentifier': 'Given Name'"]
+        R_Req["'primaryIdentifier': '',<br/>'secondaryIdentifier': ''"]
+
+        R_Dec1["Is the surname separated from the given name?"]
+        R_Opt1_No["'primaryIdentifier': 'Full Name',<br/>'secondaryIdentifier': ''"]
+        R_Opt1_Yes["'primaryIdentifier': 'Last Name',<br/>'secondaryIdentifier': 'First Name'"]
+
+        R_LocalId["'localNameIdentifier'<br/>= English Name"]
+
+        R_Dec2["Is the surname separated from the given name?"]
+        R_Opt2_No["'primaryIdentifier': 'Full Name',<br/>'secondaryIdentifier': ''"]
+        R_Opt2_Yes["'primaryIdentifier': 'Last Name',<br/>'secondaryIdentifier': 'First Name'"]
     end
 
-    %% Styling Definitions (Safe Classing)
-    classDef array fill:#d2e9e9,stroke:#5fb8b8,rx:10,ry:10
-    classDef str fill:#f9d7d7,stroke:#f0a8a8,rx:5,ry:5
-    classDef decision fill:#f4f4f4,stroke:#ccc
-    
-    class N1_NI,N1_LNI,N2_NI,N2_LNI array
-    class N1_NI_Req,N1_NI_Full,N1_NI_Sep,N1_LNI_Full,N1_LNI_Sep str
-    class N2_NI_Req,N2_NI_Full,N2_NI_Sep,N2_LNI_Full,N2_LNI_Sep str
-    class D1,D2,D3,D4,D5 decision
+%% Flow Connections
+    MainDecision -- "No (Red Path)" --> L_NameId
+    MainDecision -- "Yes (Blue Path)" --> R_NameId
+
+%% Not In Korea Flow
+    L_NameId -- "No" --> L_Req
+    L_NameId -- "Yes" --> L_Dec1
+    L_Dec1 -- "No" --> L_Opt1_No
+    L_Dec1 -- "Yes" --> L_Opt1_Yes
+
+    L_Req -- "Required" --> L_LocalId
+    L_Opt1_No -- "Optional" --> L_LocalId
+    L_Opt1_Yes -- "Optional" --> L_LocalId
+
+    L_LocalId --> L_Dec2
+    L_Dec2 -- "No" --> L_Opt2_No
+    L_Dec2 -- "Yes" --> L_Opt2_Yes
+
+%% In Korea Flow
+    R_NameId -- "No" --> R_Req
+    R_NameId -- "Yes" --> R_Dec1
+    R_Dec1 -- "No" --> R_Opt1_No
+    R_Dec1 -- "Yes" --> R_Opt1_Yes
+
+    R_Req -- "Required" --> R_LocalId
+    R_Opt1_No -- "Optional" --> R_LocalId
+    R_Opt1_Yes -- "Optional" --> R_LocalId
+
+    R_LocalId --> R_Dec2
+    R_Dec2 -- "No" --> R_Opt2_No
+    R_Dec2 -- "Yes" --> R_Opt2_Yes
+
+%% Applying Classes
+    class L_NameId,L_LocalId,R_NameId,R_LocalId Array;
+    class L_Req,L_Opt1_No,L_Opt1_Yes,L_Opt2_No,L_Opt2_Yes String;
+    class R_Req,R_Opt1_No,R_Opt1_Yes,R_Opt2_No,R_Opt2_Yes String;
+    class MainDecision,L_Dec1,L_Dec2,R_Dec1,R_Dec2 Decision;
 ```
 
 #### 3-1-1. Language Rule
@@ -176,68 +209,74 @@ The IVMS101 standard does not include a dedicated element for the representative
 ### 4-1. Comparing Natural Person Names
 ```mermaid
 graph TD
-    %% Node Definitions
-    B_Name["'nameIdentifier' of 'Beneficiary'"]
+%% Node Definitions
+    Start["'nameIdentifier' of 'Beneficiary'"]
     Retrieve["Retrieve Users Data"]
-    
-    %% Counterparty Logic
-    Step1["(1) Concatenate 'primaryIdentifier' & 'secondaryIdentifier'"]
-    Step4["(4) Concatenate 'local primary' & 'local secondary'"]
-    
-    %% User Logic
-    Step2["(2) Concatenate User's First Name & Last Name"]
-    Step3["(3) Reverse User's First Name & Last Name"]
-    
-    %% Comparison Steps
-    Comp12["Compare (1) & (2)"]
-    Comp13["Compare (1) & (3)"]
-    Comp42["Compare (4) & (2)"]
-    Comp43["Compare (4) & (3)"]
-    
-    %% Outcomes
-    Next["Proceed to next step"]
+
+    Step1["❶ Concatenate 'primaryIdentifier' & 'secondaryIdentifier'"]
+    Step2["❷ Concatenate User's First Name & Last Name"]
+
+    Comp1["Compare ❶ & ❷"]
+
+    Step3["❸ Reverse User's First Name & Last Name"]
+    Comp2["Compare ❶ & ❸"]
+
     LocalID["'localNameIdentifier' of 'Beneficiary'"]
+    Step4["❹ Concatenate 'primaryIdentifier' & 'secondaryIdentifier'"]
+
+    Comp3["Compare ❹ & ❷"]
+    Comp4["Compare ❹ & ❸"]
+
+    Proceed["Proceed to next step"]
     Mismatch["Name Mismatch"]
 
-    %% Flow Connections
-    B_Name --> Retrieve
+%% Flow Connections
+    Start --> Retrieve
     Retrieve --> Step1
-    Retrieve --> Step2
-    
-    Step1 --> Comp12
-    Step2 --> Comp12
-    
-    Comp12 -- "Yes" --> Next
-    Comp12 -- "No" --> Step3
-    
-    Step3 --> Comp13
-    Step1 --> Comp13
-    
-    Comp13 -- "Yes" --> Next
-    Comp13 -- "No" --> LocalID
-    
+    Step1 --> Step2
+    Step2 --> Comp1
+
+    Comp1 -- "Yes" --> Proceed
+    Comp1 -- "No" --> Step3
+
+    Step3 --> Comp2
+    Comp2 -- "Yes" --> Proceed
+    Comp2 -- "No" --> LocalID
+
     LocalID --> Step4
-    Step4 --> Comp42
-    Step2 --> Comp42
-    
-    Comp42 -- "Yes" --> Next
-    Comp42 -- "No" --> Comp43
-    
-    Step4 --> Comp43
-    Step3 --> Comp43
-    
-    Comp43 -- "Yes" --> Next
-    Comp43 -- "No" --> Mismatch
+    Step4 --> Comp3
 
-    %% Styling Definitions
-    classDef counterparty fill:#cfecec,stroke:#cfecec,rx:10,ry:10
-    classDef you fill:#f6d2d2,stroke:#f6d2d2,rx:10,ry:10
-    classDef neutral fill:#f4f4f4,stroke:#ccc,rx:10,ry:10
+    Comp3 -- "Yes" --> Proceed
+    Comp3 -- "No" --> Comp4
 
-    %% Data from Counterparty (Teal)
-    class B_Name,Step1,LocalID,Step4 counterparty
-    %% Data from your DB (Pink)
-    class Retrieve,Step2,Step3 you
-    %% Comparisons and Outcomes (Gray)
-    class Comp12,Comp13,Comp42,Comp43,Next,Mismatch neutral
+    Comp4 -- "Yes" --> Proceed
+    Comp4 -- "No" --> Mismatch
+
+%% Styling based on original image legend
+    classDef requestData fill:#d1ecf1,stroke:#0c5460,color:#000;
+    classDef databaseData fill:#f8d7da,stroke:#842029,color:#000;
+    classDef logicStep fill:#e9ecef,stroke:#495057,color:#000,border-radius:20px;
+
+    class Start,Step1,LocalID,Step4 requestData;
+    class Retrieve,Step2,Step3 databaseData;
+    class Comp1,Comp2,Comp3,Comp4 logicStep;
+
+%% Explanatory Comments
+%% Blue Arrows represent the 'Yes' path in the original image.
+%% Red Arrows represent the 'No' path in the original image.
 ```
+
+When verifying an individual's name, both the 'nameIdentifier' and 'localNameIdentifier' objects must be validated. First, compare the 'nameIdentifier'. If it does not match, then compare the 'localNameIdentifier'.
+※Note: The 'localNameIdentifier' may contain user information, so there could be cases where the 'nameIdentifier' is blank.
+
+The verifying VASP queries the user information in its database based on the wallet address provided in the request and compares it with the name of the actual owner of that address.
+
+For accurate comparison, combining the 'primaryIdentifier' and 'secondaryIdentifier' (first name and last name) and comparing all possible combinations are recommended. In some cases, the counterpart VASP may not separate the name into first name and last name, and might send the entire name in the 'primaryIdentifier'. In this scenario, since the counterpart's data will not change regardless of the order, 'we' should separate the user's name into first name and last name and compare it in different orders. This comparison should be performed as a single UTF-8 string, ignoring spaces (' ') and case differences.
+※If the names are not separated, assume the order is surname first and given name second for Korean names, and given name first and surname second for English names.
+
+### 4-2. Comparing Legal Person Names
+The originating VASP sends both the legal entity's name and the name of one representative. Therefore, the beneficiary VASP must compare both the legal entity's name and the individual's name, ensuring that both match.
+
+The legal entity's name should be entered as it appears in official registration. Using a service name or any other name might result in verification(A legal name mismatch stored in beneficiary's database can lead to rejection). In case of failure, adding a process to remove specific strings like "Inc." or "Ltd." and retry verification is recommended.
+
+The process of comparing the representative's name is just the same as comparing natural person's name.

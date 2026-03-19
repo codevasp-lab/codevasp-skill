@@ -13,7 +13,7 @@
 * This is a value obtained by concatenating fields in the order of (`X-Code-Req-Datetime`, `body`, `X-Code-Req-Nonce`) to generate a byte sequence, then signing it using the Private Key of the sending host with EdDSA (Ed25519).
 * For details, please refer to the example which is distributed separately.\
   (Ed25519 [https://pynacl.readthedocs.io/en/latest/signing/?highlight=Ed25519#ed25519](https://pynacl.readthedocs.io/en/latest/signing/?highlight=Ed25519#ed25519))
-* It is used to authenticate the sending VASP by the CodeVASP server, and to verify that the message has not been tampered with.
+* It is used to authenticate the sending VASP by the CodeVASP server and to verify that the message has not been tampered with.
 * It is only sent when the originating VASP sends a request and is not forwarded to the receiving VASP.
 * It is not included when the receiving VASP sends a response message.
 
