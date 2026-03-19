@@ -40,14 +40,14 @@ When the user requests assistance with CodeVASP Unhosted Wallet integrations, ad
 ### Workflow 1: Answering FAQ & Conceptual Questions
 1. Always start by scanning `references/api/Unhosted_Wallet/1. Intro.md` and the guides in `references/guides/Development/` to find authoritative answers about the verification concept, prerequisites, supported networks, and required headers.
 2. If the user asks about the verification flow, explain the three-step process: Token Issuance → Widget Execution → Result Processing.
-3. If the user asks about supported networks, refer to the network list in `06-1. Intro.md` (ETH, ARBITRUM, BASE, KAIA, MATIC, SOL, BSC).
+3. If the user asks about supported networks, refer to the network list in `1. Intro.md` (ETH, ARBITRUM, BASE, KAIA, MATIC, SOL, BSC).
 4. Keep answers concise. If a topic has an example, point the developer to the relevant API reference file instead of explaining extensively.
 
 ### Workflow 2: Implementing the Unhosted Wallet Verification Flow
 If a developer asks how to implement unhosted wallet verification:
 This skill supports VASP developers working on existing projects. The AI agent must maintain consistency with the existing codebase. Guide the developer through the following steps:
 
-1. **Prerequisites & Setup** (Ref: `1. Intro.md`, `01 - Dev Environment Setup.md`, `03 - Header Parameter.md`):
+1. **Prerequisites & Setup** (Ref: `1. Intro.md`, `01 - Dev Environment Setup.md`, `02 - Header Parameter.md`):
    - Ensure the Unhosted Wallet feature is activated by contacting the CodeVASP team.
    - Follow the dashboard onboarding and dev server registration steps in `01 - Dev Environment Setup.md` (account creation, server URL registration, key pair generation).
    - Configure mandatory headers per `03 - Header Parameter.md`: `X-Code-Req-PubKey`, `X-Code-Req-Signature`, `X-Code-Req-Datetime`, `X-Code-Req-Nonce`, `X-Request-Origin`.
