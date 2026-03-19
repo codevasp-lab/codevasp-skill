@@ -23,20 +23,20 @@ Before responding to user queries, consult the appropriate resources in the `ref
   - `02_Transaction_Flow.md`: Detailed visual and textual transaction flows.
   - `03_FAQ.md`: Comprehensive list of common integration and policy questions.
 - **2_Development/**
-  - `Dev 00 - Communication Scenarios.md`: High-level interaction diagrams.
-  - `Dev 01 - Dev Environment Setup.md`: Initial technical configuration.
-  - `Dev 02 - Encryption & Decryption.md`: Detailed logic for secured payloads.
-  - `Dev 03 - Header Parameter.md`: Reference for mandatory HTTP headers.
-  - `Dev 04 - IVMS101-part1.md`: IVMS101 base objects and structures.
-  - `Dev 04 - IVMS101-part2.md`: Advanced IVMS101 fields and validation rules.
-  - `Dev 05 - Verifying Wallet Address.md`: Logic for address validation.
-  - `Dev 06 - Verify Names.md`: Guidelines for KYC name matching.
-  - `Dev 07 - Developing the Response Process.md`: VASP-side response implementation.
-  - `Dev 08 - Developing the Request Process.md`: VASP-side request implementation.
-  - `Dev 09 - Asset Transfer Status Management.md`: State machine for transfers.
-  - `Dev 10 - Returning Errors.md`: Error code reference and handling.
-  - `Dev 11 - Interoperability with Other Protocols.md`: Cross-protocol (GTR, etc.) guidance.
-  - `Dev 12 - Go-Live Preparation.md`: Final checklist for production deployment.
+  - `00 - Communication Scenarios.md`: High-level interaction diagrams.
+  - `01 - Dev Environment Setup.md`: Initial technical configuration.
+  - `02 - Encryption & Decryption.md`: Detailed logic for secured payloads.
+  - `03 - Header Parameter.md`: Reference for mandatory HTTP headers.
+  - `04 - IVMS101-part1.md`: IVMS101 base objects and structures.
+  - `04 - IVMS101-part2.md`: Advanced IVMS101 fields and validation rules.
+  - `05 - Verifying Wallet Address.md`: Logic for address validation.
+  - `06 - Verify Names.md`: Guidelines for KYC name matching.
+  - `07 - Developing the Response Process.md`: VASP-side response implementation.
+  - `08 - Developing the Request Process.md`: VASP-side request implementation.
+  - `09 - Asset Transfer Status Management.md`: State machine for transfers.
+  - `10 - Returning Errors.md`: Error code reference and handling.
+  - `11 - Interoperability with Other Protocols.md`: Cross-protocol (GTR, etc.) guidance.
+  - `12 - Go-Live Preparation.md`: Final checklist for production deployment.
 - **3_Corporate_Travel_Rule/**
   - `01_Policy.md`: Policy framework for corporate accounts.
   - `02_Comprehensive_Guide.md`: End-to-end integration for Legal Entities.
@@ -44,15 +44,15 @@ Before responding to user queries, consult the appropriate resources in the `ref
   - `04_Communicating_With_Other_Protocols.md`: Corporate interoperability details.
 
 ### 2. API Reference (`references/api/`)
-- **API 01 - Intro/**
+- **01 - Intro/**
   - `CodeVASP Introduction.md`
-- **API 02 - CodeVASP-Cipher/**
+- **02 - CodeVASP-Cipher/**
   - `02-1. CodeVASP-Cipher Server Module Guide.md`
   - `02-2. Create Header, Payload.md`
   - `02-3. Encrypt.md`
   - `02-4. Decrypt.md`
   - `02-5. Health Check.md`
-- **API 03 - Request API/**
+- **03 - Request API/**
   - `03-1. VASP List Search.md`
   - `03-2. Public Key Search.md`
   - `03-3. Networks by Coin.md`
@@ -66,7 +66,7 @@ Before responding to user queries, consult the appropriate resources in the `ref
   - `03-11. Search VASP by TXID Request.md`
   - `03-12. Search VASP by TXID Result.md`
   - `03-13. Asset Transfer Data Request.md`
-- **API 04 - Response API/**
+- **04 - Response API/**
   - `04-1. Getting Started.md`
   - `04-2. Virtual Asset Address Search.md`
   - `04-3. Asset Transfer Authorization.md`
