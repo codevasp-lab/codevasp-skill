@@ -26,7 +26,7 @@ mindmap
 ```
 The policies to be configured when supporting corporate members are as follows.
 
-In particular, regarding multi-representative entities, CodeVASP’s guideline states: 'When processing a withdrawals, include information for all representatives, and when processing deposits, verify all of them.' However, since policies for multi-representative verification are still being established, a flexible approach may be needed in the initial phase. For detailed guidance, please contact the CodeVASP team.
+In particular, regarding multi-representative entities, CodeVASP's guideline states: 'When processing a withdrawals, include information for all representatives, and when processing deposits, verify all of them.' However, since policies for multi-representative verification are still being established, a flexible approach may be needed in the initial phase. For detailed guidance, please contact the CodeVASP team.
 
 ### 2-2. Without Corporate Support
 ```mermaid
@@ -48,6 +48,6 @@ In particular, when processing a withdrawal to a multi-representative entity, pl
 - Also, consider whether the UI needs to be updated to allow entry of multiple representatives when handling legal entity withdrawals. Depending on the type of legal entity, there may be more representatives than expected.
 
 ## 3. Check Counterparty Policy
-For the implementation of legal-to-legal Travel Rule transactions, it is important not only to design our internal policy properly but also to check the counterparty VASP’s policy.
+For the implementation of legal-to-legal Travel Rule transactions, it is important not only to design our internal policy properly but also to check the counterparty VASP's policy.
 
-To ensure consistent guidance, CodeVASP is currently collecting and consolidating each VASP’s internal policies. If you have established its corporate Travel Rule policy, please share it with us. If you need information about another VASP’s policy, please contact the CodeVASP team!
+To ensure consistent guidance, CodeVASP is currently collecting and consolidating each VASP's internal policies. If you have established its corporate Travel Rule policy, please share it with us. If you need information about another VASP's policy, please contact the CodeVASP team!

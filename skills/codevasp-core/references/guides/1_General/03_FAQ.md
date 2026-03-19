@@ -335,45 +335,39 @@ Key characteristics:
 > **Important for Developers:** The CodeVASP Cipher Module should **not** be confused with the CodeVASP Travel Rule API server. The module itself does **not** transmit Travel Rule data. Its output (the encrypted payload) must be used as the input to the CodeVASP API. The correct usage flow is as follows:
 
 ```mermaid
-flowchart LR
-    subgraph VASP_Inner_Network ["VASP Inner Network"]
-        direction LR
-        
-        subgraph Originator_VASP ["Originator VASP"]
-            direction TB
-            Start["Start Process"]
-            Request["Create Actual Request With Encrypted Data"]
-            Finish["Finish Process"]
+graph LR
+%% Defining the VASP Inner Network Boundary
+    subgraph VASP_Inner_Network [VASP Inner Network]
+
+        subgraph Originator_VASP [Originator VASP]
+            A1["Start Process"]
+            A2["Create Actual Request With Encrypted Data"]
+            A3["Finish Process"]
         end
 
-        subgraph CodeVASP_Cipher ["CodeVASP Cipher"]
-            direction TB
-            Cipher["Validate & Encrypt & Create Payloads"]
+        subgraph CodeVASP_Cipher [CodeVASP Cipher]
+            B1["Validate & Encrypt & Create Payloads"]
         end
+
     end
 
-    subgraph CodeVASP_External ["CodeVASP"]
-        direction TB
-        Beneficiary["Process with Beneficiary VASP"]
+%% External System
+    subgraph CodeVASP_External [CodeVASP]
+        C1["Process with Beneficiary VASP"]
     end
 
-    %% Flow of Operations
-    Start -->|1| Cipher  
-    Cipher -->|2| Request  
-    Request -->|3| Beneficiary  
-    Beneficiary -->|4| Finish  
+%% Internal Data Flow
+    A1 --> B1
+    B1 --> A2
 
-    %% Visual Styling
-    style VASP_Inner_Network fill:#EEEEEE,stroke:#DDD,stroke-dasharray: 5 5
-    style Originator_VASP fill:#B07058,color:#FFF,stroke:#8A5441
-    style CodeVASP_Cipher fill:#243E58,color:#FFF,stroke:#162A3C
-    style CodeVASP_External fill:#7CB3B7,color:#FFF,stroke:#5E8E92
-    
-    style Start fill:#FFF,color:#B07058,stroke:#B07058
-    style Request fill:#FFF,color:#B07058,stroke:#B07058
-    style Finish fill:#FFF,color:#B07058,stroke:#B07058
-    style Cipher fill:#FFF,color:#243E58,stroke:#243E58
-    style Beneficiary fill:#FFF,color:#7CB3B7,stroke:#7CB3B7
+%% Cross-Network Data Flow
+    A2 --> C1
+    C1 --> A3
+
+%% Text Mapping and Logic Comments
+%% Node B1: Acts as a security middleware within the inner network.
+%% Node C1: Represents the handoff to the external beneficiary service.
+%% Final step A3: The flow returns to the Originator VASP to conclude.
 ```
 
 The four steps in the flow are:

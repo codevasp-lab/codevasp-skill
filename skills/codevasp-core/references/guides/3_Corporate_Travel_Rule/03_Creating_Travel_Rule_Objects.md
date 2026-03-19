@@ -9,14 +9,14 @@ Before implementing these changes, please review your internal policies related 
 From here, we will go through the process in two parts — handling withdrawals and deposits.
 
 ## 2. As an originator
-### 2-1. How to build originator object(‘originatorPersons’)
+### 2-1. How to build originator object('originatorPersons')
 #### Individual (KYC)
 ```mermaid
 graph LR
     A("'originatorPersons'") --> B("'naturalPerson' info")
     
 ```
-#### Leagal Entity KYB)
+#### Legal Entity (KYB)
 ```mermaid
 graph LR
     %% Scenario 1
@@ -72,19 +72,19 @@ graph LR
 ```
 
 > [!NOTE] Name field: allowed characters
-> - ‘legalPerson’: special characters and numbers are allowed  
-> - ‘naturalPerson’: special characters and numbers are **not** allowed in names
-* The ‘originatorPersons’ object is built using the corporate information collected during KYB.
-* Under ‘originatorPersons’, include ‘legalPerson’ to hold corporate information and ‘naturalPerson’ for the representative's details.
-* In cases where there are multiple representatives, include a separate 'naturalPerson’ for each individual.
-### 2-2. How to build beneficiary object(‘beneficiaryPersons’)
+> - 'legalPerson': special characters and numbers are allowed  
+> - 'naturalPerson': special characters and numbers are **not** allowed in names
+* The 'originatorPersons' object is built using the corporate information collected during KYB.
+* Under 'originatorPersons', include 'legalPerson' to hold corporate information and 'naturalPerson' for the representative's details.
+* In cases where there are multiple representatives, include a separate 'naturalPerson' for each individual.
+### 2-2. How to build beneficiary object('beneficiaryPersons')
 #### Individual(User Input)
 ```mermaid
 graph LR
     A("'beneficiaryPersons'") --> B("'naturalPerson' info")
     
 ```
-#### Leagal Entity (User Input)
+#### Legal Entity (User Input)
 ```mermaid
 graph LR
     %% Scenario 1
@@ -138,16 +138,16 @@ graph LR
     class C1,C2,C3,R1_1,R2_1,R2_2,R3_1,R3_2,R3_3 annotation
 ```
 > [!NOTE] Name field: allowed characters
-> - ‘legalPerson’: special characters and numbers are allowed  
-> - ‘naturalPerson’: special characters and numbers are **not** allowed in names
+> - 'legalPerson': special characters and numbers are allowed  
+> - 'naturalPerson': special characters and numbers are **not** allowed in names
 
 - The beneficiary object is generally built using user-provided input.
 - Please update the withdrawal UI to allow input of multiple representatives, in case there is more than one.
-- Under beneficiaryPersons, include ‘legalPerson’ to store corporate information and ‘naturalPerson’ to capture the representative’s details.
-- Add a separate naturalPerson for each representative, if there is more than one.
+- Under beneficiaryPersons, include 'legalPerson' to store corporate information and 'naturalPerson' to capture the representative's details.
+- Add a separate naturalPerson for each representative if there is more than one.
 
 ## 3. As a beneficiary
 * Check your internal policy on whether transfers between natural persons and legal entities are allowed.
 * The format of the originator and beneficiary objects may vary depending on the policy.
-* Verify that the legal entity and representative information on ‘your’ platform matches the Beneficiary data for the Travel Rule before proceeding.
-* If your platform has n representatives registered, the Travel Rule data must contain the same number of representative entries, and a full match is required. This is CodeVASP’s recommended guideline.
+* Verify that the legal entity and representative information on 'your' platform matches the Beneficiary data for the Travel Rule before proceeding.
+* If your platform has n representatives registered, the Travel Rule data must contain the same number of representative entries, and a full match is required. This is CodeVASP's recommended guideline.

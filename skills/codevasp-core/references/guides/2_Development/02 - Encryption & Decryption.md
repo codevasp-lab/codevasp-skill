@@ -9,7 +9,7 @@
 > - OPTION1. Use the Cipher module provided by CodeVASP →Move to 2. Cipher
 > - OPTION2. Custom Encryption → Move to 3. Custom Encryption
 ## 2. Cipher Module
-- Cipher is CODE’s encryption module, distributed as a Docker image.
+- Cipher is CODE's encryption module, distributed as a Docker image.
 * Please read [02-1. CodeVASP-Cipher Server Module Guide] and follow the instructions in the guide.
 * Use the Cipher response **as-is** for the CodeVASP API request.
 ```mermaid

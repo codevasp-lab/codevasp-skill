@@ -2,89 +2,83 @@
 
 ## Originator: Sender's Data Type
 ```mermaid
-graph TD
-    subgraph Originator_Sender_Data_Type ["Originator: Sender's Data Type"]
-        %% Case 1: Natural Person
-        O1_Root("[Neutral] Originator (Case 1: Natural Person)")
-        O1_Persons("[Neutral] originatorPersons")
-        O1_Acc("[Neutral] accountNumber")
-        O1_Natural("[Natural] naturalPerson")
+graph LR
+%% Scenario 1: Natural Person
+	subgraph Originator1 [Originator1 - Sender is a natural person]
+		direction LR
+		O1((Originator)) -- "Sender account data bundle" --> OP1[originatorPersons]
+		O1 -- "Sender account wallet address" --> AN1[accountNumber]
+		OP1 -- "Individual user (KYC Info)" --> NP1(naturalPerson)
+	end
 
-        O1_Root --- O1_Persons
-        O1_Root --- O1_Acc
-        O1_Persons --> O1_Natural
+%% Scenario 2: Legal Entity (Single CEO)
+	subgraph Originator2 [Originator2 - Sender is a legal entity Single CEO]
+		direction LR
+		O2((Originator)) -- "Sender account data bundle" --> OP2[originatorPersons]
+		O2 -- "Sender account wallet address" --> AN2[accountNumber]
+		OP2 -- "Legal user (KYB info)" --> LP2(legalPerson)
+		OP2 -- "CEO of the entity (KYB info)" --> NP2(naturalPerson)
+	end
 
-        %% Case 2: Legal Entity (Single CEO)
-        O2_Root("[Neutral] Originator (Case 2: Legal Entity - Single CEO)")
-        O2_Persons("[Neutral] originatorPersons")
-        O2_Acc("[Neutral] accountNumber")
-        O2_Legal("[Legal] legalPerson (Legal user KYB info)")
-        O2_Natural("[Natural] naturalPerson (CEO of the entity KYB info)")
+%% Scenario 3: Legal Entity (Multi CEO)
+	subgraph Originator3 [Originator3 - Sender is a legal entity Multi CEO]
+		direction LR
+		O3((Originator)) -- "Sender account data bundle" --> OP3[originatorPersons]
+		O3 -- "Sender account wallet address" --> AN3[accountNumber]
+		OP3 -- "Legal user (KYB info)" --> LP3(legalPerson)
+		OP3 -- "CEO 1 of the entity (KYB info)" --> NP3a(naturalPerson)
+		OP3 -- "CEO 2 of the entity (KYB info)" --> NP3b(naturalPerson)
+		NP3b -.-> Extra["Add as many 'naturalPerson' as needed"]
+	end
 
-        O2_Root --- O2_Persons
-        O2_Root --- O2_Acc
-        O2_Persons --> O2_Legal
-        O2_Persons --> O2_Natural
-
-        %% Case 3: Legal Entity (Multi CEO)
-        O3_Root("[Neutral] Originator (Case 3: Legal Entity - Multi CEO)")
-        O3_Persons("[Neutral] originatorPersons")
-        O3_Acc("[Neutral] accountNumber")
-        O3_Legal("[Legal] legalPerson (Legal user KYB info)")
-        O3_Natural1("[Natural] naturalPerson (CEO 1 of the entity KYB info)")
-        O3_Natural2("[Natural] naturalPerson (CEO 2 of the entity KYB info)")
-
-        O3_Root --- O3_Persons
-        O3_Root --- O3_Acc
-        O3_Persons --> O3_Legal
-        O3_Persons --> O3_Natural1
-        O3_Persons --> O3_Natural2
-    end
+%% Styling to match the original image colors
+	style NP1 fill:#f8d7da,stroke:#842029
+	style NP2 fill:#f8d7da,stroke:#842029
+	style NP3a fill:#f8d7da,stroke:#842029
+	style NP3b fill:#f8d7da,stroke:#842029
+	style LP2 fill:#d1ecf1,stroke:#0c5460
+	style LP3 fill:#d1ecf1,stroke:#0c5460
 ```
 ##  Beneficiary: Recipient's Data Type
 ```mermaid
-graph TD
-    subgraph Beneficiary_Recipient_Data_Type ["Beneficiary: Recipient's Data Type"]
-        %% Case 1: Natural Person
-        B1_Root("[Neutral] Beneficiary (Case 1: Natural person)")
-        B1_Persons("[Neutral] beneficiaryPersons (Recipient account info)")
-        B1_Acc("[Neutral] accountNumber (Recipient account wallet address)")
-        B1_Natural("[Natural] naturalPerson (User-entered info)")
+graph LR
+%% Scenario 1: Natural Person Recipient
+	subgraph Beneficiary1 [Beneficiary1 - Recipient is a natural person]
+		direction LR
+		B1((Beneficiary)) -- "Recipient account data bundle" --> BP1[beneficiaryPersons]
+		B1 -- "Recipient account wallet address" --> AN1[accountNumber]
+		BP1 -- "User-entered info" --> NP1(naturalPerson)
+	end
 
-        B1_Root --- B1_Persons
-        B1_Root --- B1_Acc
-        B1_Persons --> B1_Natural
+%% Scenario 2: Legal Entity Recipient (Single CEO)
+	subgraph Beneficiary2 [Beneficiary2 - Recipient is a legal entity Single CEO]
+		direction LR
+		B2((Beneficiary)) -- "Recipient account data bundle" --> BP2[beneficiaryPersons]
+		B2 -- "Recipient account wallet address" --> AN2[accountNumber]
+		BP2 -- "User-entered info" --> LP2(legalPerson)
+		BP2 -- "User-entered info" --> NP2(naturalPerson)
+	end
 
-        %% Case 2: Legal Entity (Single CEO)
-        B2_Root("[Neutral] Beneficiary (Case 2: Legal entity - Single CEO)")
-        B2_Persons("[Neutral] beneficiaryPersons (Recipient account info)")
-        B2_Acc("[Neutral] accountNumber (Recipient account wallet address)")
-        B2_Legal("[Legal] legalPerson (User-entered info)")
-        B2_Natural("[Natural] naturalPerson (User-entered info)")
+%% Scenario 3: Legal Entity Recipient (Multi CEO)
+	subgraph Beneficiary3 [Beneficiary3 - Recipient is a legal entity Multi CEO]
+		direction LR
+		B3((Beneficiary)) -- "Recipient account data bundle" --> BP3[beneficiaryPersons]
+		B3 -- "Recipient account wallet address" --> AN3[accountNumber]
+		BP3 -- "User-entered info" --> LP3(legalPerson)
+		BP3 -- "User-entered info" --> NP3a(naturalPerson)
+		BP3 -- "User-entered info" --> NP3b(naturalPerson)
+		NP3b -.-> Extra["Add as many 'naturalPerson' as needed"]
+	end
 
-        B2_Root --- B2_Persons
-        B2_Root --- B2_Acc
-        B2_Persons --> B2_Legal
-        B2_Persons --> B2_Natural
-
-        %% Case 3: Legal Entity (Multi CEO)
-        B3_Root("[Neutral] Beneficiary (Case 3: Legal entity - Multi CEO)")
-        B3_Persons("[Neutral] beneficiaryPersons (Recipient account info)")
-        B3_Acc("[Neutral] accountNumber (Recipient account wallet address)")
-        B3_Legal("[Legal] legalPerson (User-entered info)")
-        B3_Natural1("[Natural] naturalPerson (User-entered info)")
-        B3_Natural2("[Natural] naturalPerson (User-entered info)")
-        B3_Note("[Natural] Add as many 'naturalPerson' as needed.")
-
-        B3_Root --- B3_Persons
-        B3_Root --- B3_Acc
-        B3_Persons --> B3_Legal
-        B3_Persons --> B3_Natural1
-        B3_Persons --> B3_Natural2
-        B3_Natural2 -.- B3_Note
-    end
+%% Styling to match the visual cues
+	style NP1 fill:#f8d7da,stroke:#842029
+	style NP2 fill:#f8d7da,stroke:#842029
+	style NP3a fill:#f8d7da,stroke:#842029
+	style NP3b fill:#f8d7da,stroke:#842029
+	style LP2 fill:#d1ecf1,stroke:#0c5460
+	style LP3 fill:#d1ecf1,stroke:#0c5460
 ```
-## ‘Legal to Legal’ Deposit/Withdraw Guide
+## 'Legal to Legal' Deposit/Withdraw Guide
 ```mermaid
 graph LR
     %% Main Bundle
@@ -123,12 +117,12 @@ graph LR
 ### To do when withdraw
 1. Acquire needed information
 	1. The originator information is populated using the data stored in our database, which was obtained during the KYB process.
-	2. The ‘dateOfBirth’ field under the ‘naturalPerson’ of the originator entity is not required. The recipient information is obtained from the customer.
-	3. The ‘dateOfBirth’ field under the recipient entity’s ‘naturalPerson’ is not required.
-	4. Required data may differ by the counterparty VASP’s policy. Check their policy before sending legal entity Travel Rule information.
-2. Check for counterparty VASP’s policy
-	1. Transfers involving legal entity may differ by country regulations and each VASP’s internal policy.
-		1. e.g) Korean regulation: Beneficiary  CEO(‘naturalPerson’) info under ‘legalPerson’ of Beneficiary is also required  
+	2. The 'dateOfBirth' field under the 'naturalPerson' of the originator entity is not required. The recipient information is obtained from the customer.
+	3. The 'dateOfBirth' field under the recipient entity's 'naturalPerson' is not required.
+	4. Required data may differ by the counterparty VASP's policy. Check their policy before sending legal entity Travel Rule information.
+2. Check for counterparty VASP's policy
+	1. Transfers involving legal entity may differ by country regulations and each VASP's internal policy.
+		1. e.g) Korean regulation: Beneficiary  CEO('naturalPerson') info under 'legalPerson' of Beneficiary is also required  
 		2.  e.g) VASP policy: Some VASPs allow transfers between 1st-party only. 
 		3.  e.g) VASP policy: Some VASPs may require all information of CEO for multi-CEO entity
 ### To do when deposit
@@ -136,18 +130,18 @@ graph LR
 	1. Please store it to comply with the Travel Rule.
 	2. Make sure it is properly mapped to data such as TxID or Transfer ID.
 2. Legal entity check
-	1. Verify if ‘legalPerson’ exists in the originator or beneficiary data.
+	1. Verify if 'legalPerson' exists in the originator or beneficiary data.
 3. Query user data
 	1. Based on the accountNumber (recipient wallet address), retrieve from our legal entity customer database.  
-	2. The data obtained through KYB during the customer’s onboarding process must be stored in advance.
+	2. The data obtained through KYB during the customer's onboarding process must be stored in advance.
 4. Check internal policy
-	1. Verify whether our policy allows deposits for the ‘legal to legal ‘ type.  
+	1. Verify whether our policy allows deposits for the 'legal to legal ' type.  
 	2. Review which data fields must match (entity info, representative info, or both).  
 	3. If multiple representatives exist, check whether all or at least one must match.
 5. Verify beneficiary data and our user data
 	1. Representative information of a legal entity is often obtained during the KYB process rather than through a separate KYC procedure.  
 	2. Text mismatches may occur due to naming format differences
-## ‘Legal to Natural’ Deposit/Withdraw Guide
+## 'Legal to Natural' Deposit/Withdraw Guide
 ```mermaid
 graph LR
     %% Root Node
@@ -181,25 +175,25 @@ graph LR
 ### To do when withdraw
  1. Acquire needed information
 	 1. The originator information is populated using the data stored in our database, which was obtained during the KYB process.
-	 2. The ‘dateOfBirth’ field under the ‘naturalPerson’ of the originator entity is not required.
+	 2. The 'dateOfBirth' field under the 'naturalPerson' of the originator entity is not required.
      The recipient information is obtained from the customer.
-	 3. The ‘dateOfBirth’ field under the recipient entity’s ‘naturalPerson’ is not required.
-2. Check for counterparty VASP’s policy
+	 3. The 'dateOfBirth' field under the recipient entity's 'naturalPerson' is not required.
+2. Check for counterparty VASP's policy
 	1. Check if the counterparty accepts deposits from legal entities or only allows first-party transfers.
 ### To do when deposit
 1. Save sender account data
 	1. Please store it to comply with the Travel Rule.   
 	2. Make sure it is properly mapped to data such as TxID or Transfer ID.
 2. Legal entity check
-	1. Verify if ‘legalPerson’ exists in the originator or beneficiary data.
+	1. Verify if 'legalPerson' exists in the originator or beneficiary data.
 3. Query user data
 	1. Based on the accountNumber (recipient wallet address), retrieve from our legal entity customer database.
 4. Check internal policy
-	1. Verify whether our policy allows deposits for the ‘legal to natural ‘ type.
+	1. Verify whether our policy allows deposits for the 'legal to natural ' type.
 5. Verify beneficiary data and our user data
-	1. Verify if the Travel Rule recipient data matches our customer’s KYC data.
+	1. Verify if the Travel Rule recipient data matches our customer's KYC data.
 	2. Adding a name-order switching logic (first ↔ last) can increase match accuracy.
-## ‘Natural to Legal' Deposit/Withdraw Guide
+## 'Natural to Legal' Deposit/Withdraw Guide
 ```mermaid
 graph LR
     %% Main Root
@@ -259,16 +253,16 @@ graph LR
 ### To do when withdraw
 1. Acquire needed information
 	1. The originator information is populated using the data stored in our database, which was obtained during the KYB process.
-	2. The ‘dateOfBirth’ field under the ‘naturalPerson’ of the originator entity is not required. The recipient information is obtained from the customer.
-	3. The ‘dateOfBirth’ field under the recipient entity’s ‘naturalPerson’ is not required.
-	4. Required data may differ by the counterparty VASP’s policy. Check their policy before sending legal entity Travel Rule information.
-2. Check for counterparty VASP’s policy
-	1. Transfers involving legal entity may differ by country regulations and each VASP’s internal policy.
-		1. e.g) Korean regulation: Beneficiary  CEO(‘naturalPerson’) info under ‘legalPerson’ of Beneficiary is also required  
+	2. The 'dateOfBirth' field under the 'naturalPerson' of the originator entity is not required. The recipient information is obtained from the customer.
+	3. The 'dateOfBirth' field under the recipient entity's 'naturalPerson' is not required.
+	4. Required data may differ by the counterparty VASP's policy. Check their policy before sending legal entity Travel Rule information.
+2. Check for counterparty VASP's policy
+	1. Transfers involving legal entity may differ by country regulations and each VASP's internal policy.
+		1. e.g) Korean regulation: Beneficiary  CEO('naturalPerson') info under 'legalPerson' of Beneficiary is also required  
 		2. e.g)VASP policy: Some VASPs allow transfers between 1st-party only. 
 		3. e.g)VASP policy: Some VASPs may require all information of CEO for multi-CEO entity
 ## Tips
-### ‘naturalPerson’ Data Source
+### 'naturalPerson' Data Source
 ```mermaid
 graph LR
     %% Scenario 1: Individual Originator
@@ -342,12 +336,12 @@ graph LR
 	- Store first name and last name separately.
 	- Design a refined fallback process for name verification.
 #### When the Beneficiary is a 'naturlaPerson'
-- The 'naturlaPerson' information comes from the origin VASP’s withdrawal UI
+- The 'naturlaPerson' information comes from the origin VASP's withdrawal UI
 - It was entered by the user. 
 #### When the Beneficiary is a 'legalPerson'
-- The 'naturlaPerson' information comes from the origin VASP’s withdrawal UI
+- The 'naturlaPerson' information comes from the origin VASP's withdrawal UI
 - May require multiple name input fields
-### ‘naturalPerson’ Date of Birth
+### 'naturalPerson' Date of Birth
 ```mermaid
 graph LR
     %% Scenario 1: Individual Originator

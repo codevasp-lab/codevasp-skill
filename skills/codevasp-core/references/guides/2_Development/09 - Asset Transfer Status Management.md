@@ -50,7 +50,7 @@ graph LR
 
 
 > [!NOTE]Is it possible for a 'confirmed' status to change to 'canceled'?
-> We recommend that VASPs change the status to 'confirmed' (‘Report Transfer Result’) only after finality has been secured.
+> We recommend that VASPs change the status to 'confirmed' ('Report Transfer Result') only after finality has been secured.
 > However, each VASP has its own criteria for determining finality. For example, Exchange A may consider finality sufficient after three additional blocks are generated, whereas Exchange B may require six blocks for confirmation. Therefore, there is a probabilistic chance that the status may change from 'confirmed' to 'canceled'.
 
 * verified / denied: Determined based on the response from the counterparty VASP to the 'Asset Transfer Authorization' request..

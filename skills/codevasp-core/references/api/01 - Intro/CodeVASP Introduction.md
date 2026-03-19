@@ -1,6 +1,6 @@
 # CodeVASP Introduction
 
-CodeVASP was established as an alliance of Korea’s leading exchanges. Today, it stands as a globally recognized Travel Rule solution with the longest operational track record and proven expertise. With new features such as 'Search VASP by Wallet' and 'Search VASP by TXID,' CodeVASP continues to advance the Travel Rule process and shape emerging global standards.
+CodeVASP was established as an alliance of Korea's leading exchanges. Today, it stands as a globally recognized Travel Rule solution with the longest operational track record and proven expertise. With new features such as 'Search VASP by Wallet' and 'Search VASP by TXID,' CodeVASP continues to advance the Travel Rule process and shape emerging global standards.
 
 ## CodeVASP Workflow
 

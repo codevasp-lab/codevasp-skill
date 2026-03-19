@@ -1,20 +1,42 @@
 # 01_Integration_Process
 
 ```mermaid
-flowchart TD
-    Phase1["1.CodeVASP DD"] -.-> Phase2["2.CodeVASP Dev Integration"]
-    Phase2 -.-> Phase3["3.Member VASP Review"]
+graph TD
+%% Stage 1: CodeVASP Due Diligence
+    subgraph Stage1 [1. CodeVASP DD]
+        A1["CodeVASP DD Assessment Complete"]
+    end
 
-    Phase1 --> Step1_1["CodeVASP DD Assessment Complete"]
+%% Stage 2: Development Integration
+    subgraph Stage2 [2. CodeVASP Dev Integration]
+        B1["API Integration"]
+        B2["Dev env Tx/Rx Test"]
+        B3["Checklist Review"]
+        B4["Dev Integration Done (Prod Deployment)"]
 
-    Phase2 --> Step2_1["API Integration"]
-    Step2_1 --> Step2_2["Dev env Tx/Rx Test"]
-    Step2_2 --> Step2_3["Checklist Review"]
-    Step2_3 --> Step2_4["Dev Integration Done (Prod Deployment)"]
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+    end
 
-    Phase3 --> Step3_1["VASP DD Assessment"]
-    Step3_1 --> Step3_2["Assessment Passed"]
-    Step3_2 --> Step3_3["Integration Complete🎉"]
+%% Stage 3: Member Review
+    subgraph Stage3 [3. Member VASP Review]
+        C1["VASP DD Assessment"]
+        C2["Assessment Passed"]
+        C3["Integration Complete 🎉"]
+
+        C1 --> C2
+        C2 --> C3
+    end
+
+%% High-level Process Flow
+    Stage1 -.-> Stage2
+    Stage2 -.-> Stage3
+
+%% Text Mapping and Contextual Notes
+%% Node A1: Represents the completion of initial Due Diligence.
+%% Node B1-B4: Represents the technical execution and deployment phase.
+%% Node C1-C3: Represents the final regulatory/member assessment and finalization.
 ```
 
 ## 1. CodeVASP DD
@@ -26,37 +48,5 @@ Once integration is complete, a transmission and reception test will be conducte
 ## 3. Member VASP Review
 Completing the API integration process with CodeVASP does not automatically enable transactions with all member VASPs. For actual transactions to be enabled, each member VASP typically has an internal review process for connecting with newly onboarded VASPs. This process may include AML/CFT risk assessments, evaluations of business considerations, and reviews of development readiness and operational stability.
 
-VASP entities operating under licensing regimes in regulated jurisdictions generally have their own due diligence procedures. The review process and timeline vary depending on each VASP’s internal policies, and the decision to enable transaction integration—along with its timing—is determined based on the outcome of each VASP’s due diligence.
-
-```mermaid
-graph LR
-    %% Stage 1: CodeVASP DD
-    subgraph S1 ["1.CodeVASP DD"]
-        direction TB
-        A1["CodeVASP DD<br/>Assessment Complete"]
-    end
-
-    %% Stage 2: CodeVASP Dev Integration
-    subgraph S2 ["2.CodeVASP Dev Integration"]
-        direction TB
-        B1["API Integration"] --> B2["Dev env<br/>Tx/Rx Test"]
-        B2 --> B3["Checklist Review"]
-        B3 --> B4["Dev Integration Done<br/>(Prod Deployment)"]
-    end
-
-    %% Stage 3: Member VASP Review
-    subgraph S3 ["3.Member VASP Review"]
-        direction TB
-        C1["VASP DD Assessment"] --> C2["Assessment Passed"]
-        C2 --> C3["Integration Complete 🎉"]
-    end
-
-    %% Transitions between stages
-    S1 -.-> S2
-    S2 -.-> S3
-
-    %% Text Mapping & Explanations
-    %% Node A1: Initial due diligence (DD) assessment phase.
-    %% Node B1-B4: Technical integration steps including API setup, testing, and production deployment.
-    %% Node C1-C3: Final review and validation by the Member VASP to close the process.
-```
+VASP entities operating under licensing regimes in regulated jurisdictions generally have their own due diligence procedures. The review process and timeline vary depending on each VASP's internal policies, and the decision to enable transaction integration—along with its timing—is determined based on the outcome of each VASP's due diligence.
+ 

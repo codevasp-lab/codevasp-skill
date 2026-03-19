@@ -6,8 +6,8 @@ A wallet address may have various formats, combining the address itself, a tag o
 | :- | :------------------------------------------------ | :------------------------------------------------------------------ | :------------------------- |
 | 1  | Address only                                      | BTC , ETH…                                                          | address                    |
 | 2  | Combination of address and tag or memo            | EOS,  XRP…                                                          | address:memo or tag        |
-| 3  | ‘:’ included in the address                       | BCH, Kaspa…                                                         | prefix:address             |
-| 4  | ‘:’ included in the address and tag or memo added | Not existing at the moment, but potentially possible in the future. | prefix:address:memo or tag |
+| 3  | ':' included in the address                       | BCH, Kaspa…                                                         | prefix:address             |
+| 4  | ':' included in the address and tag or memo added | Not existing at the moment, but potentially possible in the future. | prefix:address:memo or tag |
 
 ## 1. Verify Address First
 ```mermaid
@@ -52,7 +52,7 @@ graph TD
 
 ```
 1. Verify address with the received string as it is.
-2. If it fails, check if the string contains a ‘:’. If so, split the string at the rightmost colon.
+2. If it fails, check if the string contains a ':'. If so, split the string at the rightmost colon.
 3. Re-verify with the first segment of the splitted string.
 
 > **📌Tips**

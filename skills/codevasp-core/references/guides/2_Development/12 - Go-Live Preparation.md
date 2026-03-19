@@ -14,11 +14,11 @@ regulations. Displaying VASPs that cannot actually be used may harm the user
 experience, so it is recommended to manage an internally approved list separately.
 
 ### 1-3. Have you implemented birthdate inclusion in the originator information?
-While Travel Rule requirements vary by jurisdiction, verifying a user’s date of birth is emerging as a key global regulatory trend. In regions such as Europe and Hong Kong, including the birthdate is already mandatory. To ensure interoperability between VASPs, please collect and transmit the originator’s date of birth.
+While Travel Rule requirements vary by jurisdiction, verifying a user's date of birth is emerging as a key global regulatory trend. In regions such as Europe and Hong Kong, including the birthdate is already mandatory. To ensure interoperability between VASPs, please collect and transmit the originator's date of birth.
 
 ### 1-4. Have you implemented the 'Report Transfer Result' API to function as part of your actual transfer process?
 Some VASPs, depending on their internal policies, do not proceed with asset deposits unless the txid has been properly submitted. Many VASPs consider correct implementation of this process—aligned with the standard—a key requirement during integration reviews.
-Please ensure your production environment reflects all scenarios tested in the development environment, in accordance with CodeVASP’s guidelines.
+Please ensure your production environment reflects all scenarios tested in the development environment, in accordance with CodeVASP's guidelines.
 
 ## 2. Go-Live Preparation
 ### 2-1. Request/Response test complete
