@@ -1,4 +1,4 @@
-# Dev 01 - Dev Environment Setup
+# 01 - Dev Environment Setup
 
 ## 1. Join Our Dashboard
 * Check that all developers participating in the Travel Rule integration project have created their accounts on the dashboard.

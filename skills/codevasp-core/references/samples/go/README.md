@@ -1,1 +1,1 @@
-# go-example
+# README

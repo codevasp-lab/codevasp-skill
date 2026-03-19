@@ -1,4 +1,4 @@
-# Dev 09 - Asset Transfer Status Management
+# 09 - Asset Transfer Status Management
 
 ## 1. Data to Save
 | Data                                   | Description                                             |

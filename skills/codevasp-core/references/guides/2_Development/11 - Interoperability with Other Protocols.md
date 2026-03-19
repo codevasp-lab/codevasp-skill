@@ -1,4 +1,4 @@
-# Dev 11 - Interoperability with Other Protocols
+# 11 - Interoperability with Other Protocols
 
 ## 1. Check the VASP List
 ![](Dev 11 - Interoperability with Other Protocols - 01.png)

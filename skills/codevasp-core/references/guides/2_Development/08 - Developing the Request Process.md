@@ -1,4 +1,4 @@
-# Dev 08 - Developing the Request Process
+# 08 - Developing the Request Process
 
 ## 1. Before You Start 
 * After 'Asset Transfer Authorization', you must complete the process with either  'Report Transfer Result (TX Hash)' or 'Finish Transfer'.

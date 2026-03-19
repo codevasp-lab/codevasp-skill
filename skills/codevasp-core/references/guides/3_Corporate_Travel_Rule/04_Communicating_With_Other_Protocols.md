@@ -1,4 +1,4 @@
-# Communicating With Other Protocols
+# 04_Communicating_With_Other_Protocols
 
 ## 1. To GTR(specific to Binance)
 * The process differs when communicating with Binance, which is integrated with the GTR solution. 

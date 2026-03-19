@@ -1,4 +1,4 @@
-# Dev 03 - Header Parameter
+# 03 - Header Parameter
 
 ## X-Code-Req-Nonce (Required, Unsigned Integer)
 * This is a serial number set on the request to avoid duplicate requests.

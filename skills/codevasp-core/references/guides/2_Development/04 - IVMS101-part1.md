@@ -1,4 +1,4 @@
-# Dev 04 - IVMS101-part1
+# 04 - IVMS101-part1
 
 CodeVASP uses the IVMS101 standard to exchange personal information related to virtual asset transaction. [https://intervasp.org/](https://intervasp.org/)
 - A field name of a message is expressed with camelCase whose first character starts with a lowercase. But, `Originator`, `Beneficiary`, `OriginatorVASP`, and `BeneficiaryVASP` objects corresponding to Entity in ivms101 are expressed with PascalCase.

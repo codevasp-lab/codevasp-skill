@@ -1,4 +1,4 @@
-# CodeVASP Travel Rule FAQ
+# 03_FAQ
 
 ## 1. What are the critical prerequisites before starting technical integration and development?
 

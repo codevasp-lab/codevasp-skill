@@ -1,4 +1,4 @@
-# Dev 12 - Go-Live Preparation
+# 12 - Go-Live Preparation
 
 ## 1. Checklist
 ### 1-1. Have you implemented Travel Rule for API-based withdrawals?

@@ -1,4 +1,4 @@
-# Corporate Travel Rule Comprehensive Guide
+# 02_Comprehensive_Guide
 
 ## Originator: Sender's Data Type
 ```mermaid

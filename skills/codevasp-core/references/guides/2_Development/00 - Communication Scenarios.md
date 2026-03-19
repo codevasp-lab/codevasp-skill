@@ -1,4 +1,4 @@
-# Dev 00 - Communication Scenarios
+# 00 - Communication Scenarios
 
 Communication scenarios for the Travel Rule can be divided into two categories.
 1. **Standard**: Transactions where both the originating and beneficiary VASPs comply with the Travel Rule.

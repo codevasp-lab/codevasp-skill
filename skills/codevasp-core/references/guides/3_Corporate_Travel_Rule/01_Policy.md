@@ -1,4 +1,4 @@
-# Corporate Travel Rule Policy
+# 01_Policy
 
 ## 1. Intro
 ### 1-1. Core Concept
