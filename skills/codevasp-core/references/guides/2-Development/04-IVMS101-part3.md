@@ -1,452 +1,202 @@
 # 04 - IVMS101-part3
 
-# 3. IVMS101 Required Fields
-```mermaid
-graph LR
-    %% Root Node
-    root(( ))
+CodeVASP uses the IVMS101 standard to exchange personal information related to virtual asset transaction. [https://intervasp.org/](https://intervasp.org/)
+- A field name of a message is expressed with camelCase whose first character starts with lowercase. But, `Originator`, `Beneficiary`, `OriginatorVASP`, and `BeneficiaryVASP` objects corresponding to Entity in ivms101 are expressed with PascalCase.
+- The values of all fields are not case-sensitive unless otherwise specified.
+- The values of all fields are always expressed with a UTF-8 encoded string. (including boolean, integer, real number, etc.)
+- In principle, the values of all fields shall be written in English except when Local Language is permitted.
+- Please refer to complete natural person example json in complete-example.json file.
+- Please refer to complete legal person example json in complete-example-legal-person.json file.
+- Complete json schema is provided in json-schema.json file.
+- You may use [https://www.jsonschemavalidator.net/](https://www.jsonschemavalidator.net/) to validate your json format.
+  - Select schema: IVMS101 by CodeVASP Protocol
 
-    %% Originator Branch
-    root --- Originator["Originator"]
-    Originator --- originatorPersons["originatorPersons"]
-    originatorPersons --- OP_NP["naturalPerson"]
-    
-    OP_NP --- OP_CI["customerIdentification: 'customernumber in Max 50 Text'"]
-    OP_NP --- OP_COR["countryOfResidence: 'US'"]
-    
-    OP_NP --- OP_NAME["name"]
-    OP_NAME --- OP_NI["nameIdentifier"]
-    OP_NI --- OP_NIV["primaryIdentifier: 'Barnes'<br/>secondaryIdentifier: 'Robert'<br/>nameIdentifierType: 'LEGL'"]
-    OP_NAME --- OP_LNI["localNameIdentifier"]
-    OP_LNI --- OP_LNIV["primaryIdentifier: '바네스 번즈'<br/>secondaryIdentifier: ''<br/>nameIdentifierType: 'LEGL'"]
-    
-    OP_NP --- OP_DAPB["dateAndPlaceOfBirth"]
-    OP_DAPB --- OP_DAPBV["dateOfBirth: '1990-01-01'<br/>placeOfBirth: 'LA'"]
-    
-    Originator --- OP_AN["accountNumber"]
-    OP_AN --- OP_ANV["rj8nOkwt1ypcfkyZrtorzZw8hYabNMYKz:tag or memo"]
+* * *
 
-    %% Beneficiary Branch
-    root --- Beneficiary["Beneficiary"]
-    Beneficiary --- beneficiaryPersons["beneficiaryPersons"]
-    beneficiaryPersons --- BP_NP["naturalPerson"]
-    
-    BP_NP --- BP_CI["customerIdentification: 'customernumber in Max 50 Text'"]
-    BP_NP --- BP_COR["countryOfResidence: 'US'"]
-    
-    BP_NP --- BP_NAME["name"]
-    BP_NAME --- BP_NI["nameIdentifier"]
-    BP_NI --- BP_NIV["primaryIdentifier: 'Smith'<br/>secondaryIdentifier: 'Alice'<br/>nameIdentifierType: 'LEGL'"]
-    BP_NAME --- BP_LNI["localNameIdentifier"]
-    BP_LNI --- BP_LNIV["primaryIdentifier: '엘리스 스미스'<br/>secondaryIdentifier: ''<br/>nameIdentifierType: 'LEGL'"]
-    
-    BP_NP --- BP_DAPB["dateAndPlaceOfBirth"]
-    BP_DAPB --- BP_DAPBV["dateOfBirth: '1990-01-01'<br/>placeOfBirth: 'LA'"]
-    
-    Beneficiary --- BP_AN["accountNumber"]
-    BP_AN --- BP_ANV["HPxPau6whpf18R2V4iZ7NQ8xXnscuYYCVh6:tag or memo"]
-
-    %% OriginatingVASP Branch
-    root --- OriginatingVASP["OriginatingVASP"]
-    OriginatingVASP --- originatingVASP_inner["originatingVASP"]
-    originatingVASP_inner --- OV_LP["legalPerson"]
-    
-    OV_LP --- OV_COR["countryOfRegistration: 'KR'"]
-    OV_LP --- OV_NAME["name"]
-    OV_NAME --- OV_NI["nameIdentifier"]
-    OV_NI --- OV_NIV["legalPersonName: 'Gorbit Inc.'<br/>legalPersonNameIdentifierType: 'LEGL'"]
-    
-    OV_LP --- OV_GA["geographicAddress"]
-    OV_GA --- OV_GAV["addressType: 'GEOG'<br/>streetName: 'Example Street'<br/>buildingNumber: '123'<br/>buildingName: 'Example Building'<br/>postcode: '00000'<br/>townName: 'Seoul'<br/>countrySubDivision: 'N/A'<br/>country: 'KR'"]
-    OV_GAV --- OV_AL["addressLine"]
-    OV_AL --- OV_AL1["104 Teheran-ro 1-gil, Gangnam-gu"]
-    OV_AL --- OV_AL2["10th floor"]
-    
-    OV_LP --- OV_NI_ID["nationalIdentification"]
-    OV_NI_ID --- OV_NI_V["nationalIdentifier: 'EXAMPLE-TAX-ID'<br/>nationalIdentifierType: 'RAID'<br/>registrationAuthority: 'RA000657'"]
-
-    %% BeneficiaryVASP Branch
-    root --- BeneficiaryVASP["BeneficiaryVASP"]
-    BeneficiaryVASP --- beneficiaryVASP_inner["beneficiaryVASP"]
-    beneficiaryVASP_inner --- BV_LP["legalPerson"]
-    
-    BV_LP --- BV_COR["countryOfRegistration: 'KR'"]
-    BV_LP --- BV_NAME["name"]
-    BV_NAME --- BV_NI["nameIdentifier"]
-    BV_NI --- BV_NIV["legalPersonName: 'Coinone Inc.'<br/>legalPersonNameIdentifierType: 'LEGL'"]
-    
-    BV_LP --- BV_GA["geographicAddress"]
-    BV_GA --- BV_GAV["addressType: 'GEOG'<br/>streetName: 'Example Street'<br/>buildingNumber: '456'<br/>buildingName: 'Example Building'<br/>postcode: '00000'<br/>townName: 'Seoul'<br/>countrySubDivision: 'N/A'<br/>country: 'KR'"]
-    BV_GAV --- BV_AL["addressLine"]
-    BV_AL --- BV_AL1["104 Teheran-ro 1-gil, Gangnam-gu"]
-    BV_AL --- BV_AL2["10th floor"]
-    
-    BV_LP --- BV_NI_ID["nationalIdentification"]
-    BV_NI_ID --- BV_NI_V["nationalIdentifier: '0104824434'<br/>nationalIdentifierType: 'RAID'<br/>registrationAuthority: 'RA000657'"]
-
+## Asset Transfer Authorization
+### Initial IVMS101 from an originator VASP
+As an originator VASP, you need to send following to beneficiary VSAP. You should know the entityId of beneficiary from CodeVASP, however, you still do not know their VASP information, thus, only send following objects.
 ```
-IVMS101 features a complex structure, as illustrated above. The provided diagram is merely one example; scenarios vary depending on the classification as 'naturalPerson'/'legalPerson' and the use of 'localNameIdentifier'.
-
-As required fields differ across sending and receiving cases, understanding each scenario thoroughly and entering the necessary details is required.
-
-Although the structure appears complex, effectively handling the four essential elements—'Originator', 'Beneficiary', 'OriginatingVASP', and 'BeneficiaryVASP'—ensures a smooth process. The originating VASP shall incorporate 'Originator', 'Beneficiary', and 'OriginatingVASP' information into the 'payload' as per the IVMS101 standard and dispatch the request. The beneficiary VASP then finalizes the process by adding 'BeneficiaryVASP' details to the received data and issuing a response.
-
-We will now review the key IVMS101 objects for common cases.
-
-## 3-1. As an Originator
-### 3-1-1. 'Originator': 'naturalPerson'
-```mermaid
-graph LR
-    %% Root Node
-    root(( ))
-
-    %% Main Branches
-    root --> Originator["Originator"]
-    root --> Beneficiary["Beneficiary"]
-    root --> OriginatingVASP["OriginatingVASP"]
-
-    %% Originator Path
-    Originator --> originatorPersons["originatorPersons [3]"]
-    Originator --> accountNumber["accountNumber [1]"]
-
-    originatorPersons --> naturalPerson["naturalPerson {3}"]
-    accountNumber --> accountValue["rjChk8e71gxVhyJSr1srzZxWhVisWMMYKz:tag or memo"]
-
-    %% Natural Person Details
-    naturalPerson --> idInfo["customerIdentification: 'customernumber in Max 50 Text'<br/>countryOfResidence: 'US'"]
-    naturalPerson --> name["name {1}"]
-    naturalPerson --> dateAndPlaceOfBirth["dateAndPlaceOfBirth {1}"]
-
-    %% Name Details
-    name --> nameIdentifier["nameIdentifier [1]"]
-    name --> localNameIdentifier["localNameIdentifier [1]"]
-
-    nameIdentifier --> niValue["primaryIdentifier: ''<br/>secondaryIdentifier: ''<br/>nameIdentifierType: ''"]
-    localNameIdentifier --> lniValue["primaryIdentifier: '로버트 반스'<br/>secondaryIdentifier: ''<br/>nameIdentifierType: 'LEGL'"]
-
-    %% Birth Details
-    dateAndPlaceOfBirth --> dobValue["dateOfBirth: '1990-01-01'<br/>placeOfBirth: 'LA'"]
-
-    %% Beneficiary/VASP Details (To be provided)
-    Beneficiary --> B_detail["detail: 'To be provided'"]
-    OriginatingVASP --> V_detail["detail: 'To be provided'"]
-
-    %% Styling for "Required" Fields (Red Border)
-    classDef required fill:#fff,stroke:#ff0000,stroke-width:2px;
-    class Originator,Beneficiary,OriginatingVASP required;
-    class originatorPersons,accountNumber,accountValue required;
-    class naturalPerson,name,dateAndPlaceOfBirth required;
-    class nameIdentifier,niValue required;
-    class dobValue required;
-
-    %% Styling for "To be provided" and local info
-    classDef optional fill:#f9f9f9,stroke:#999,stroke-width:1px;
-    class idInfo,localNameIdentifier,lniValue,B_detail,V_detail optional;
-
+{
+  "Originator": {...},
+  "Beneficiary": {...},
+  "OriginatingVASP": {...}
+}
 ```
-* When the originator is an individual, under the 'name' object, 'nameIdentifier' is required, whereas 'localNameIdentifier' is optional.
-* Since **the 'nameIdentifier' is required, enter blank** if there is no matching value.
-* But when communicating **between Korean VASPs**, it is agreed that the 'nameIdentifier' will contain the Korean name and the 'localNameIdentifier' will contain the English name.
- 
 
-### 3-1-2. 'Originator': 'legalPerson'
-```mermaid
-graph LR
-    %% Root Node
-    root(( ))
-
-    %% Primary Branches
-    root --- Originator["Originator"]
-    root --- Beneficiary["Beneficiary"]
-    root --- OriginatingVASP["OriginatingVASP"]
-
-    %% Originator Path
-    Originator --- originatorPersons["originatorPersons [2]"]
-    Originator --- accountNumber["accountNumber [1]"]
-
-    %% originatorPersons Branches
-    originatorPersons --- legalPerson["legalPerson {1}<br/>(Corporate Info)"]
-    originatorPersons --- CEO1["naturalPerson {1}<br/>(CEO1 Info)"]
-    originatorPersons --- CEO2["naturalPerson {1}<br/>(CEO2 Info (Optional))"]
-
-    %% Corporate Info Details
-    legalPerson --- LP_ID["customerIdentification: 'customernumber in Max 50 Text'<br/>countryOfRegistration: 'KR'"]
-    legalPerson --- LP_name["name {1}"]
-    legalPerson --- LP_natID["nationalIdentification {1}"]
-
-    LP_name --- LP_nameID["nameIdentifier {1}"]
-    LP_nameID --- LP_nameVal["legalPersonName: 'Coinone Inc.'<br/>legalPersonNameIdentifierType: 'LEGL'"]
-
-    %% CEO1 Info Details
-    CEO1 --- CEO1_name["name {2}"]
-    CEO1_name --- CEO1_nameID["nameIdentifier [1]"]
-    CEO1_name --- CEO1_localName["localNameIdentifier [1]"]
-
-    CEO1_nameID --- CEO1_val["primaryIdentifier: ''<br/>secondaryIdentifier: ''<br/>nameIdentifierType: ''<br/>(Enter blank if no value)"]
-
-    %% Account Details
-    accountNumber --- accountVal["rjChk8e71gxVhyJSr1srzZxWhVisWMMYKz:tag or memo"]
-
-    %% Beneficiary & VASP Details
-    Beneficiary --- B_detail["detail: 'To be provided'"]
-    OriginatingVASP --- V_detail["detail: 'To be provided'"]
-
-    %% Styling for "Required" Fields (Red Border)
-    classDef required fill:#fff,stroke:#ff0000,stroke-width:2px;
-    class Originator,Beneficiary,OriginatingVASP required;
-    class originatorPersons,accountNumber,accountVal required;
-    class legalPerson,CEO1 required;
-    class LP_name,LP_nameID,LP_nameVal required;
-    class CEO1_name,CEO1_nameID,CEO1_val required;
-
-    %% Styling for Optional/Placeholders
-    classDef optional fill:#f9f9f9,stroke:#999,stroke-width:1px;
-    class CEO2,LP_ID,LP_natID,CEO1_localName,B_detail,V_detail optional;
-
+### Response IVMS101 from a beneficiary VASP
+When beneficiary VASP response to originator, it should complete the IVMS101 format as following.
 ```
-* When the originator is a corporate entity,  under the 'originatorPersons' object, **both a 'legalPerson' and at least one 'naturalPerson' are required**.
-* The 'legalPerson' object contains corporate details, while 'naturalPerson' includes the corporate representative(CEO)'s information.
-* Under the 'name' object, **'nameIdentifier' is required**, whereas 'localNameIdentifier' is optional.
-* Since **the 'nameIdentifier' is required, enter blank** if there is no matching value.
-* If there are multiple corporate representatives, add as many 'naturalPerson' objects as needed to the 'beneficiaryPersons' array.
-* The 'nameIdentifier' contains the English name, while the 'localNameIdentifier' holds the Korean name (or other local language names).
-* But when communicating **between Korean VASPs**, it is agreed that the 'nameIdentifier' will contain the Korean name and the 'localNameIdentifier' will contain the English name.
- 
-
-### 3-1-3. 'Beneficiary': 'naturalPerson'
-```mermaid
-graph LR
-    %% Root Node
-    root(( ))
-
-    %% Primary Branches
-    root --- Originator["Originator"]
-    root --- Beneficiary["Beneficiary {2}"]
-    root --- OriginatingVASP["OriginatingVASP"]
-
-    %% Beneficiary Path
-    Beneficiary --- beneficiaryPersons["beneficiaryPersons [1]"]
-    Beneficiary --- accountNumber["accountNumber [1]"]
-
-    %% Persons and Account Details
-    beneficiaryPersons --- naturalPerson["naturalPerson {3}"]
-    accountNumber --- accountVal["rHcFoo6a9qT5NHiVn1THQRhsEGcxtYCV4d:tag or memo"]
-
-    %% Natural Person Details
-    naturalPerson --- idInfo["customerIdentification: 'customernumber in Max 50 Text'<br/>countryOfResidence: 'US'"]
-    naturalPerson --- name["name {2}"]
-    naturalPerson --- dateAndPlaceOfBirth["dateAndPlaceOfBirth {1}"]
-
-    %% Name Details
-    name --- nameIdentifier["nameIdentifier [1]"]
-    name --- localNameIdentifier["localNameIdentifier [1]"]
-
-    %% Values
-    nameIdentifier --- niVal["primaryIdentifier: ''<br/>secondaryIdentifier: ''<br/>nameIdentifierType: ''<br/>(Enter blank if no value)"]
-    localNameIdentifier --- lniVal["primaryIdentifier: '엘리스 스미스'<br/>secondaryIdentifier: ''<br/>nameIdentifierType: 'LEGL'"]
-    dateAndPlaceOfBirth --- dobVal["dateOfBirth: '1990-01-01'<br/>placeOfBirth: 'LA'"]
-
-    %% Placeholder details
-    Originator --- O_detail["detail: 'To be provided'"]
-    OriginatingVASP --- V_detail["detail: 'To be provided'"]
-
-    %% Styling for "Required" Fields (Red Border)
-    classDef required fill:#fff,stroke:#ff0000,stroke-width:2px;
-    class Originator,Beneficiary,OriginatingVASP required;
-    class beneficiaryPersons,accountNumber,accountVal required;
-    class naturalPerson,name,nameIdentifier,niVal required;
-
-    %% Styling for Optional/Secondary Fields
-    classDef optional fill:#f9f9f9,stroke:#999,stroke-width:1px;
-    class idInfo,dateAndPlaceOfBirth,localNameIdentifier,lniVal,dobVal,O_detail,V_detail optional;
-
+{
+  "Originator": {...},
+  "Beneficiary": {...},
+  "OriginatingVASP": {...},
+  "BeneficiaryVASP": {...}
+}
 ```
-- When the beneficiary is an individual, under the 'name' object, **'nameIdentifier' is required**,  whereas 'localNameIdentifier' is optional.
-- Since **the 'nameIdentifier' is required, enter blank** if there is no matching value.
-- The 'nameIdentifier' contains the English name, while the 'localNameIdentifier' holds the Korean name (or other local language names).
-- But when communicating **between Korean VASPs**, it is agreed that the 'nameIdentifier' will contain the Korean name and the 'localNameIdentifier' will contain the English name.
- 
+You may also include more Beneficiary information in Beneficiary Object such as `customerIdentification`.
 
-### 3-1-4. 'Beneficiary': 'legalPerson'
-```mermaid
-graph LR
-    %% Root Node
-    root(( ))
+### Asset Transfer Authorization IVMS101 Request
+- **ivms101**(Required): This is an object defined according to the IVMS101 international standard for each subject involved in the transfer of virtual assets, such as `Beneficiary`, `BeneficiaryVASP`, `Originator`, and `OriginatorVASP` as per the IVMS101 message standard. The `Originator`s name, asset address, `Beneficiary`'s asset address, and `OriginatingVASP` information in the 'Asset Transfer Authorization Request' shall be included, and `Beneficiary` name is optional.
+  - **Originator**(Required): Refers to the account holder who allows the Virtual Asset(VA) transfer from that account, the natural or legal person that places the order with the originating VASP to perform the VA transfer.
+    - **originatorPersons**(Required): There are two types of objects, `naturalPerson` (individual) and `legalPerson` (corporate), and for `legalPerson`, both `legalPerson` (corporation) and `naturalPerson` (representative) information shall be set. This is an array object, and an element of the array shall define either `naturalPerson` or `legalPerson`. For details, please refer to the [IVMS101 part2].
+      - **naturalPerson**(Required): This is an object for setting information on a natural person, and the `name` information shall be set as required.
+        - **name**(Required):
+          - **nameIdentifier**: Enter the legal name. If a transaction is made between VASPs in Korea, enter in Korean. If a transaction is made with VASPs outside Korea, enter in English. Please refer to the [IVMS101 part2].
+            - **primaryIdentifier**: If you cannot enter or separate the last name, enter the first name and last name together in order.
+            - **secondaryIdentifier**: Enter the first name. If first name and last name cannot be separated, omit them.
+            - **nameIdentifierType**: Fixed as `LEGL`(legal)
+          - **localNameIdentifier**: If a transaction is made with VASPs outside Korea, this is defined to send a local name additionally.
+            - **primaryIdentifier**: Enter the last name in a local name separated by first name and last name. If they cannot be separated, enter the first name and last name together in order.
+            - **secondaryIdentifier**: Enter the first name in a local name separated by first name and last name. If they cannot be separated, omit them.
+            - **nameIdentifierType**: Fixed as `LEGL`(legal)
+        - **dateAndPlaceOfBirth** (Required): 
+          - **dateOfBirth**: Enter date of birth in `1990-01-01` format. 
+        - **customerIdentification**(Optional): This is an identifier (UID or IDX), with which a VASP can identify an originator who transfers the assets
+      - **legalPerson**(Optional): This is an object for setting information on an legal person, and the name object shall be set as required.
+        - **name**(Required):
+          - **nameIdentifier**: Enter the name of a legal person in the registration. If a transaction is made between domestic VASPs, enter it in Korean or in English, and If a transaction is made with VASPs outside of Korea, enter in English.
+            - **legalPersonName**: Legal person name
+            - **legalPersonNameIdentifierType**: Fixed as `LEGL`(legal)
+        - **customerIdentification**(Optional): This is a unique identifier (UID or IDX), with which a VASP can identify an originator who transfers the assets
+    - **accountNumber**(Required): This is a wallet address which transfers the assets. If tag or memo value is required, separate them with `:` and make one string. Please refer to [Verify Wallet Address].
+  - **Beneficiary**(Required): Fill in the information about the individual or legal entity and their representative who will receive the assets. When sending a request, you must include the `Beneficiary` information, which consists of the name and wallet address. The wallet address information is mandatory, the name information is optional if the `tradePrice` does not exceed the Travel Rule threshold, but required if it does. The name information is Required when `isExceedingThreshold` is true, and Optional when `isExceedingThreshold` is false. 
+  ※ Considering the market volatility and global regulations, we recommend applying the Travel Rule to all transactions. In this case, set the `isExceedingThreshold` as False and enter the beneficiary's name.
+    - **beneficiaryPersons**(Required): The `Beneficiary` object must include a sub-object called `beneficiaryPersons`. The structure of `beneficiaryPersons` is the same as `originatorPersons`. It can be divided into `naturalPerson` or `legalPerson`. When comparing the name entered with the actual name of the recipient, if the names do not match, the receiving VASP sends a denied response.
+      - **naturalPerson**(Required or Optional): This is an object used to set information about an individual. It is Required when `isExceedingThreshold` is true, and Optional when `isExceedingThreshold` is false.
+      - **legalPerson**(Required or Optional): This is an object used to set information about a legal entity. It is Required when `isExceedingThreshold` is true, and Optional when `isExceedingThreshold` is false.
+    - **accountNumber**(Required): This is a wallet address to which the assets are transferred If tag or memo value is required, separate them with `:` and make one string.
+  - **OriginatingVASP**(Required): Refers to the VASP which initiates the Virtual Asset(VA) transfer and transfers the VA upon receiving the request for a VA transfer on behalf of the originator.
+    - **originatingVASP**(Required):
+      - **legalPerson**(Required): This is the information on the legal person of a VASP to whom you want to transfer an asset
+        - **name**(Required):
+          - **nameIdentifier**: Name information following international notation. (English name)
+            - **legalPersonName**: English legal person name
+            - **legalPersonNameIdentifierType**: Fixed as `LEGL`legal)
+        - **geographicAddress**(Optional): location in the registration documents of a legal person. You shall enter one of the legal person's registration number and address.
+          - **addressType**: Enter `GEOG`.
+          - **townName**: Enter the state/province name.
+          - **addressLine**: Enter the townName sub-address in the array format array of a string.
+          - **country**: This is a two-letter country code determined by ISO-3166-1 alpha-2. e.g.) `KR`, `JP`, `US`, etc.
+        - **nationalIdentification**(Optional): This is a legal person identification number which has been certified by the country i.e.a business registration number. You shall enter either the legal person's address or registration number.
+          - **nationalIdentifier**: Business registration number
+          - **nationalIdentifierType**: `RAID`(Registration authority identifier)
+          - **registrationAuthority**: 8 digits code. Please refer to [Registration Authority Section][IVMS101 part2]
+        - **countryOfRegistration**(Required): country of registration. This is a two-letter country code determined by ISO-3166-1 alpha-2. e.g.) `KR`, `JP`, `US`, etc.
 
-    %% Primary Branches
-    root --- Originator["Originator"]
-    root --- Beneficiary["Beneficiary {2}"]
-    root --- OriginatingVASP["OriginatingVASP"]
+### Asset Transfer Authorization IVMS101 Response
+- **ivms101**(Required): This is an object defined according to the IVMS101 international standard for each subject involved in the transfer of virtual assets, such as `Beneficiary`, `BeneficiaryVASP`, `Originator`, and `OriginatorVASP` as per the IVMS101 message standard. For the `Originator`, `OriginatingVASP` information In 'Asset Transfer Authorization Response', copy the data of the request, and enter the `Beneficiary` and `BeneficiaryVASP` data.
+  - **Originator**(Required): This is information on the originator (individual) or legal person and representative who wants to transfer the assets, and the request value is copied and used.
+  - **Beneficiary**(Required): information on the originator (individual) or legal person and representative to whom the assets are transferred. You shall enter and send the name and address of an asset in the 'Asset Transfer Authorization Response'.
+    - **beneficiaryPersons**(Required): This shall be included in the `Beneficiary` object, which is the parent object, and since the structure is the same as `originatorPersons`, please refer to the `originatorPersons` description in the request.
+      - **naturalPerson**(Required): This is an object for setting information on an individual, and the `name` information shall be set as required.
+      - **legalPerson**(Optional): This is an object for setting information on a legal person, and the `name` information shall be set as required.
+    - **accountNumber**(Required): This is a wallet address which transfers the assets. If tag or memo value is required, separate them with `:` and make one string. Please refer to [Verify Wallet Address].
+  - **OriginatingVASP**(Required): Copy and use the value of the request as the information on the originating VASP to which you want to transfer the asset.
+  - **BeneficiaryVASP**(Required): This is the information on a beneficiary's VASP to which assets are transferred. Since the structure is the same as `OriginatingVASP`, please refer to the `OriginatingVASP` description in the request.
 
-    %% Beneficiary Path
-    Beneficiary --- beneficiaryPersons["beneficiaryPersons [2]"]
-    Beneficiary --- accountNumber["accountNumber [1]"]
+* * *
 
-    %% beneficiaryPersons Branches
-    beneficiaryPersons --- legalPerson["legalPerson {1}<br/>(Corporate Info)"]
-    beneficiaryPersons --- CEO1["naturalPerson {1}<br/>(CEO1 Info)"]
-    beneficiaryPersons --- CEO2["naturalPerson {1}<br/>(CEO2 Info (Optional))"]
-
-    %% Corporate Info Details
-    legalPerson --- LP_ID["customerIdentification: 'customernumber in Max 50 Text'<br/>countryOfRegistration: 'KR'"]
-    legalPerson --- LP_name["name {1}"]
-    legalPerson --- LP_natID["nationalIdentification {1}"]
-
-    LP_name --- LP_nameID["nameIdentifier {1}"]
-    LP_nameID --- LP_nameVal["legalPersonName: 'Korbit Inc.'<br/>legalPersonNameIdentifierType: 'LEGL'"]
-
-    %% CEO1 Info Details
-    CEO1 --- CEO1_name["name {2}"]
-    CEO1_name --- CEO1_nameID["nameIdentifier [1]"]
-    CEO1_name --- CEO1_localName["localNameIdentifier [1]"]
-
-    CEO1_nameID --- CEO1_val["primaryIdentifier: ''<br/>secondaryIdentifier: ''<br/>nameIdentifierType: ''<br/>(Enter blank if no value)"]
-
-    %% Account Details
-    accountNumber --- accountVal["HPxPau6whpf18R2V4iZ7NQ8xXnscuYYCVh6:tag or memo"]
-
-    %% Placeholder details
-    Originator --- O_detail["detail: 'To be provided'"]
-    OriginatingVASP --- V_detail["detail: 'To be provided'"]
-
-    %% Styling for "Required" Fields (Red Border)
-    classDef required fill:#fff,stroke:#ff0000,stroke-width:2px;
-    class Originator,Beneficiary,OriginatingVASP required;
-    class beneficiaryPersons,accountNumber,accountVal required;
-    class legalPerson,CEO1 required;
-    class LP_name,LP_nameID,LP_nameVal required;
-    class CEO1_name,CEO1_nameID,CEO1_val required;
-
-    %% Styling for Optional/Secondary Fields
-    classDef optional fill:#f9f9f9,stroke:#999,stroke-width:1px;
-    class CEO2,LP_ID,LP_natID,CEO1_localName,O_detail,V_detail optional;
-
+## Asset Transfer Data Request
+The asset transfer data request, in contrast to the asset transfer authorization request, is a method to obtain travel rule data from the counterparty when an anonymous deposit has occurred following an already executed on-chain transaction.
+### Initial IVMS101 from a Beneficiary VASP
+As a Beneficiary VASP, the following object needs to be sent to the Originator VASP. The entityId of the Originator VASP is already known through the TXID lookup, but the information of the sender is unknown, so it is sent as follows.
 ```
-* Under the 'originatorPersons' object, both a 'legalPerson' and at least one 'naturalPerson' are required.
-* The 'legalPerson' object contains corporate details, while 'naturalPerson' includes the corporate representative(CEO)'s information.
-* Under the 'name' object, **'nameIdentifier' is required**,  whereas 'localNameIdentifier' is optional.
-* Since **the 'nameIdentifier' is required, enter blank** if there is no matching value.
-* If there are multiple corporate representatives, add as many 'naturalPerson' objects as needed to the 'beneficiaryPersons' array.
-* The 'nameIdentifier' contains the English name, while the 'localNameIdentifier' holds the Korean name (or other local language names).
-* - But when communicating **between Korean VASPs**, it is agreed that the 'nameIdentifier' will contain the Korean name and the 'localNameIdentifier' will contain the English name.
- 
-
-### 3-1-5. 'OriginatingVASP'
-```mermaid
-graph LR
-    %% Root Node
-    root(( ))
-
-    %% Primary Branches
-    root --- Originator["Originator {2}"]
-    root --- Beneficiary["Beneficiary"]
-    root --- OriginatingVASP["OriginatingVASP {1}"]
-
-    %% Detail placeholders
-    Originator --- O_detail["detail: 'To be provided'"]
-    Beneficiary --- B_detail["detail: 'To be provided'"]
-
-    %% OriginatingVASP Path
-    OriginatingVASP --- originatingVASP_inner["originatingVASP {1}"]
-    originatingVASP_inner --- legalPerson["legalPerson {4}"]
-
-    %% legalPerson Branches
-    legalPerson --- countryReg["countryOfRegistration: 'KR'"]
-    legalPerson --- name["name {1}"]
-    legalPerson --- geographicAddress["geographicAddress [1]"]
-    legalPerson --- nationalIdentification["nationalIdentification {1}"]
-
-    %% Name Details
-    name --- nameIdentifier["nameIdentifier [1]"]
-    nameIdentifier --- nameVal["legalPersonName: 'Korbit Inc.'<br/>legalPersonNameIdentifierType: 'LEGL'"]
-
-    %% Geographic Address Details
-    geographicAddress --- geoVal["addressType: 'GEOG'<br/>streetName: 'Example Street'<br/>buildingNumber: '123'<br/>buildingName: 'Example Building'<br/>postcode: '00000'<br/>townName: 'Seoul'<br/>countrySubDivision: 'N/A'<br/>country: 'KR'"]
-    geoVal --- addressLine["addressLine [2]"]
-    addressLine --- al1["104 Teheran-ro 1-gil, Gangnam-gu"]
-    addressLine --- al2["10th floor"]
-
-    %% National Identification Details
-    nationalIdentification --- natVal["nationalIdentifier: 'EXAMPLE-TAX-ID'<br/>nationalIdentifierType: 'RAID'<br/>registrationAuthority: 'RA000657'"]
-
-    %% Conditional Requirement Logic
-    Note["★One of two required"]
-    Note -.-> geographicAddress
-    Note -.-> nationalIdentification
-
-    %% Styling for "Required" Fields (Red Border)
-    classDef required fill:#fff,stroke:#ff0000,stroke-width:2px;
-    class Originator,OriginatingVASP,originatingVASP_inner,legalPerson required;
-    class countryReg,name,nameIdentifier,nameVal required;
-    class geographicAddress,nationalIdentification,natVal required;
-
-    %% Styling for "To be provided"
-    classDef optional fill:#f9f9f9,stroke:#999,stroke-width:1px;
-    class O_detail,B_detail,addressLine,al1,al2 optional;
-
+{
+  "Beneficiary": {...},
+  "BeneficiaryVASP": {...}
+}
 ```
-- The 'OriginatingVASP' object contains information about the sending VASP.
-- Under 'legalPerson', both 'name' and 'countryOfRegistration' are required, and either 'geographicAddress' or 'nationalIdentification' should also be entered.
-- When using 'nationalIdentification', it's recommended to include 'registrationAuthority', the details of the issuing body. Download the 'GLEIF Registration Authorities List' from the bottom of the [GLEIF website](https://www.gleif.org/en/about-lei/code-lists/gleif-registration-authorities-list), locate the Authority Code that corresponds with your country and registration type.
-  
 
-### 3-1-6. 'BeneficiaryVASP'
-```mermaid
-graph LR
-    %% Root Node
-    root(( ))
-
-    %% Primary Branches
-    root --- Originator["Originator {2}"]
-    root --- Beneficiary["Beneficiary"]
-    root --- OriginatingVASP["OriginatingVASP"]
-    root --- BeneficiaryVASP["BeneficiaryVASP {1}"]
-
-    %% Detail placeholders
-    Originator --- O_detail["detail: 'To be provided'"]
-    Beneficiary --- B_detail["detail: 'To be provided'"]
-    OriginatingVASP --- V_detail["detail: 'To be provided'"]
-
-    %% BeneficiaryVASP Path
-    BeneficiaryVASP --- beneficiaryVASP_inner["beneficiaryVASP {1}"]
-    beneficiaryVASP_inner --- legalPerson["legalPerson {4}"]
-
-    %% legalPerson Branches
-    legalPerson --- countryReg["countryOfRegistration: 'KR'"]
-    legalPerson --- name["name {1}"]
-    legalPerson --- geographicAddress["geographicAddress [1]"]
-    legalPerson --- nationalIdentification["nationalIdentification {1}"]
-
-    %% Name Details
-    name --- nameIdentifier["nameIdentifier [1]"]
-    nameIdentifier --- nameVal["legalPersonName: 'Coinone Inc.'<br/>legalPersonNameIdentifierType: 'LEGL'"]
-
-    %% Geographic Address Details
-    geographicAddress --- geoVal["addressType: 'GEOG'<br/>streetName: 'Example Street'<br/>buildingNumber: '456'<br/>buildingName: 'Example Building'<br/>postcode: '00000'<br/>townName: 'Seoul'<br/>countrySubDivision: 'N/A'<br/>country: 'KR'"]
-    geoVal --- addressLine["addressLine [2]"]
-    addressLine --- al1["104 Teheran-ro 1-gil, Gangnam-gu"]
-    addressLine --- al2["10th floor"]
-
-    %% National Identification Details
-    nationalIdentification --- natVal["nationalIdentifier: '6948624434'<br/>nationalIdentifierType: 'RAID'<br/>registrationAuthority: 'RA000657'"]
-
-    %% Conditional Requirement Logic
-    Note["★One of two required"]
-    Note -.-> geographicAddress
-    Note -.-> nationalIdentification
-
-    %% Styling for "Required" Fields (Red Border)
-    classDef required fill:#fff,stroke:#ff0000,stroke-width:2px;
-    class Originator,Beneficiary,OriginatingVASP,BeneficiaryVASP required;
-    class beneficiaryVASP_inner,legalPerson required;
-    class countryReg,name,nameIdentifier,nameVal required;
-    class geographicAddress,nationalIdentification,natVal required;
-
-    %% Styling for Optional/Placeholder
-    classDef optional fill:#f9f9f9,stroke:#999,stroke-width:1px;
-    class O_detail,B_detail,V_detail,addressLine,al1,al2 optional;
-
+### Response IVMS101 from an Originator VASP
+As the Originator VASP, you respond to the Beneficiary VASP's request by adding the `Originator` and `OriginatorVASP` objects.
 ```
-* The receiving VASP adds their 'BeneficiaryVASP' information to the 'Originator', 'Beneficiary', and 'OriginatingVASP' information contained in the 'Asset Transfer Authorization Request' and sends it back to the originating VASP.
-* Under 'legalPerson', both 'name' and 'countryOfRegistration' are required, and either 'geographicAddress' or 'nationalIdentification' should also be entered.
-* When using 'nationalIdentification', it's recommended to include 'registrationAuthority', the details of the issuing body. Download the 'GLEIF Registration Authorities List' from the bottom of the [GLEIF website](https://www.gleif.org/en/about-lei/code-lists/gleif-registration-authorities-list), locate the Authority Code that corresponds with your country and registration type..
+{
+  "Originator": {...},
+  "OriginatingVASP": {...},
+  "Beneficiary": {...},
+  "BeneficiaryVASP": {...}
+}
+```
+
+### Asset Transfer Data Request IVMS101 Request
+- **ivms101**(Required): This is an object defined according to the IVMS101 international standard for each subject involved in the transfer of virtual assets, such as `Beneficiary`, `BeneficiaryVASP`, `Originator`, and `OriginatorVASP` as per the IVMS101 message standard. The `Beneficiary` and `BeneficiaryVASP` information in the 'Asset Transfer Data Request' shall be included. 
+  - **Beneficiary**(Required): Enter information about the recipient (individual) or the corporation and its representative receiving the assets. When sending a request, you must include `Beneficiary` information, which consists of ① name and ② wallet address. The wallet address information is mandatory.
+    - **beneficiaryPersons**(Required): There are two types of objects: `naturalPerson` (individual) and `legalPerson` (corporation). In the case of a corporation, you need to set both `legalPerson` (corporation) and `naturalPerson` (representative) information. It is an array object, and each element of the array must define either `naturalPerson` or `legalPerson`.
+      - **naturalPerson**(Required): This is an object for setting information on a natural person, and the `name` information shall be set as required.
+        - **name**(Required):
+          - **nameIdentifier**: Enter the legal name. If a transaction is made between VASPs in Korea, enter in Korean. If a transaction is made with VASPs outside Korea, enter in English. Please refer to the [IVMS101 part2].
+            - **primaryIdentifier**: If you cannot enter or separate the last name, enter the first name and last name together in order.
+            - **secondaryIdentifier**: Enter the first name. If first name and last name cannot be separated, omit them.
+            - **nameIdentifierType**: Fixed as `LEGL`(legal)
+          - **localNameIdentifier**: If a transaction is made with VASPs outside Korea, this is defined to send a local name additionally.
+            - **primaryIdentifier**: Enter the last name in a local name separated by first name and last name. If they cannot be separated, enter the first name and last name together in order.
+            - **secondaryIdentifier**: Enter the first name in a local name separated by first name and last name. If they cannot be separated, omit them.
+            - **nameIdentifierType**: Fixed as `LEGL`(legal)
+        - **customerIdentification**(Optional): This is an identifier (UID or IDX), with which a VASP can identify a beneficiary who received the assets.
+      - **legalPerson**(Optional): This is an object for setting information on an legal person, and the name object shall be set as required.
+        - **name**(Required):
+          - **nameIdentifier**: Enter the name of a legal person in the registration. If a transaction is made between domestic VASPs, enter it in Korean or in English, and If a transaction is made with VASPs outside of Korea, enter in English.
+            - **legalPersonName**: Legal person name
+            - **legalPersonNameIdentifierType**: Fixed as `LEGL`(legal)
+        - **customerIdentification**(Optional): This is a unique identifier (UID or IDX), with which a VASP can identify a beneficiary who received the assets.
+    - **accountNumber**(Required): This is a wallet address which received the assets. If tag or memo value is required, separate them with `:` and make one string.
+  - **BeneficiaryVASP**(Required): Information of the VASP that received the assets.
+    - **beneficiaryVASP**(Required):
+      - **legalPerson**(Required): Information of the corporation of the VASP that received the assets.
+        - **name**(Required):
+          - **nameIdentifier**: Name information following international notation. (English name)
+            - **legalPersonName**: English legal person name
+            - **legalPersonNameIdentifierType**: Fixed as `LEGL`legal)
+        - **geographicAddress**(Optional): location in the registration documents of a legal person. You shall enter one of the legal person's registration number and address.
+          - **addressType**: Enter `GEOG`.
+          - **townName**: Enter the state/province name.
+          - **addressLine**: Enter the townName sub-address in the array format array of a string.
+          - **country**: This is a two-letter country code determined by ISO-3166-1 alpha-2. e.g.) `KR`, `JP`, `US`, etc.
+        - **nationalIdentification**(Optional): This is a legal person identification number which has been certified by the country i.e.a business registration number. You shall enter either the legal person's address or registration number.
+          - **nationalIdentifier**: Business registration number
+          - **nationalIdentifierType**: `RAID`(Registration authority identifier)
+          - **registrationAuthority**: 8 digits code. Please refer to [Registration Authority Section][IVMS101 part2]
+        - **countryOfRegistration**(Required): country of registration. This is a two-letter country code determined by ISO-3166-1 alpha-2. e.g.) `KR`, `JP`, `US`, etc.
+
+### Asset Transfer Data Request IVMS101 Response
+- **ivms101**(Required): In the response object, the `Originator` and `OriginatingVASP` information is created from the data found through the TXID. The `Beneficiary` and `BeneficiaryVASP` data are used as they are from the request object.
+  - **Originator**(Required): Refers to the account holder who allows the Virtual Asset(VA) transfer from that account, the natural or legal person that places the order with the originating VASP to perform the VA transfer.
+    - **originatorPersons**(Required): There are two types of objects, `naturalPerson` (individual) and `legalPerson` (corporate), and for `legalPerson`, both `legalPerson` (corporation) and `naturalPerson` (representative) information shall be set. This is an array object, and an element of the array shall define either `naturalPerson` or `legalPerson`. For details, please refer to the [IVMS101 part2].
+      - **naturalPerson**(Required): This is an object for setting information on a natural person, and the `name` information shall be set as required.
+        - **name**(Required):
+          - **nameIdentifier**: Enter the legal name. If a transaction is made between VASPs in Korea, enter in Korean. If a transaction is made with VASPs outside Korea, enter in English. Please refer to the [IVMS101 part2].
+            - **primaryIdentifier**: If you cannot enter or separate the last name, enter the first name and last name together in order.
+            - **secondaryIdentifier**: Enter the first name. If first name and last name cannot be separated, omit them.
+            - **nameIdentifierType**: Fixed as `LEGL`(legal)
+          - **localNameIdentifier**: If a transaction is made with VASPs outside Korea, this is defined to send a local name additionally.
+            - **primaryIdentifier**: Enter the last name in a local name separated by first name and last name. If they cannot be separated, enter the first name and last name together in order.
+            - **secondaryIdentifier**: Enter the first name in a local name separated by first name and last name. If they cannot be separated, omit them.
+            - **nameIdentifierType**: Fixed as `LEGL`(legal)
+        - **customerIdentification**(Optional): This is an identifier (UID or IDX), with which a VASP can identify an originator who transfers the assets
+      - **legalPerson**(Optional): This is an object for setting information on an legal person, and the name object shall be set as required.
+        - **name**(Required):
+          - **nameIdentifier**: Enter the name of a legal person in the registration. If a transaction is made between domestic VASPs, enter it in Korean or in English, and If a transaction is made with VASPs outside of Korea, enter in English.
+            - **legalPersonName**: Legal person name
+            - **legalPersonNameIdentifierType**: Fixed as `LEGL`(legal)
+        - **customerIdentification**(Optional): This is a unique identifier (UID or IDX), with which a VASP can identify an originator who transfers the assets
+    - **accountNumber**(Required): This is a wallet address of originator. If tag or memo value is required, separate them with `:` and make one string. 
+  - **OriginatingVASP**(Required): Refers to the VASP which initiates the Virtual Asset(VA) transfer and transfers the VA upon receiving the request for a VA transfer on behalf of the originator.
+    - **originatingVASP**(Required):
+      - **legalPerson**(Required): This is the information on the legal person of a VASP to whom you want to transfer an asset
+        - **name**(Required):
+          - **nameIdentifier**: Name information following international notation. (English name)
+            - **legalPersonName**: English legal person name
+            - **legalPersonNameIdentifierType**: Fixed as `LEGL`legal)
+        - **geographicAddress**(Optional): location in the registration documents of a legal person. You shall enter one of the legal person's registration number and address.
+          - **addressType**: Enter `GEOG`.
+          - **townName**: Enter the state/province name.
+          - **addressLine**: Enter the townName sub-address in the array format array of a string.
+          - **country**: This is a two-letter country code determined by ISO-3166-1 alpha-2. e.g.) `KR`, `JP`, `US`, etc.
+        - **nationalIdentification**(Optional): This is a legal person identification number which has been certified by the country i.e.a business registration number. You shall enter either the legal person's address or registration number.
+          - **nationalIdentifier**: Business registration number
+          - **nationalIdentifierType**: `RAID`(Registration authority identifier)
+          - **registrationAuthority**: 8 digits code. Please refer to [Registration Authority Section][IVMS101 part2]
+        - **countryOfRegistration**(Required): country of registration. This is a two-letter country code determined by ISO-3166-1 alpha-2. e.g.) `KR`, `JP`, `US`, etc.
+  - **Beneficiary**(Required): Information of the recipient who received the assets. The object from the request are copied and used as they are.
+  - **BeneficiaryVASP**(Required): Information of the VASP that received the assets. The object from the request are copied and used as they are.
