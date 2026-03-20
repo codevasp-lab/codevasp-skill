@@ -26,7 +26,7 @@ Before responding to user queries, consult the appropriate resources in the `ref
 - **2-Development/**
   - `00-Communication-Scenarios.md`: High-level interaction diagrams.
   - `01-Dev-Environment-Setup.md`: Initial technical configuration.
-  - `02-Encryption-&-Decryption.md`: Detailed logic for secured payloads.
+  - `02-Encryption-Decryption.md`: Detailed logic for secured payloads.
   - `03-Header-Parameter.md`: Reference for mandatory HTTP headers.
   - `04-IVMS101-part1.md`: IVMS101 base objects and structures.
   - `04-IVMS101-part2.md`: Advanced IVMS101 fields and validation rules.
