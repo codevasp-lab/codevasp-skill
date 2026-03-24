@@ -64,18 +64,6 @@ Provided your own test data on dashboard and save:
 
 ---
 
-### **Expanded Section: Asset Transfer Data Request**
-| ID | Scenario Description  |
-| :--- | :--- | 
-| **TC-TX-01** | Not found TXID 
-| **TC-TX-02** | Missing Required Information for IVMS101 Data Configuration
-| **TC-TX-03** | When the passed beneficiary name is English 
-| **TC-TX-04** | When the passed beneficiary name is a local name 
-| **TC-TX-05** | When the passed beneficiary name is English (legal) 
-| **TC-TX-06** | When the passed beneficiary name is a local name (legal)
-
----
-
 * Click the arrow to expand the toggle.
 * Click the button to test.
 * **Guidelines**
