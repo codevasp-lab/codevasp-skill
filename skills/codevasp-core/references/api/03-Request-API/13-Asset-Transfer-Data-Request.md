@@ -12,8 +12,6 @@ This API works in the reverse way of 'Asset Transfer Authorization'. So when an 
 > Differences in behavior between CodeVASP and GTR member VASPs:
 > - CodeVASP: Requests missing Travel Rule data from the Originating VASP.
 > - GTR: Validates whether the Originator matches the Beneficiary by verifying the Beneficiary's KYC information provided within the Originator object.
-> 
-
 
 ## Endpoint
 
@@ -149,7 +147,7 @@ This API works in the reverse way of 'Asset Transfer Authorization'. So when an 
 >
 > "tradePrice": "85416",
 > "tradeCurrency": "USD",
-> 
+
 ## Examples
 
 ### Request
