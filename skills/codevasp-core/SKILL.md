@@ -18,13 +18,13 @@ This skill provides the AI agent with the necessary procedures, references, and 
 Before responding to user queries, consult the appropriate resources in the `references/` directory. Be explicit in your responses about which file or standard you are referencing.
 
 ### 1. Guides (`references/guides/`)
-- **1-General/**
+- **01-General/**
   - `01-Integration-Process.md`: Step-by-step CodeVASP onboarding.
-  - `02-Transaction-Flow.md`: Detailed visual and textual transaction flows.
-  - `03-General-FAQ.md`: Comprehensive list of common integration and policy questions.
-  - `04_Technical-FAQ.md`: Technical FAQ.
-- **2-Development/**
-  - `00-Communication-Scenarios.md`: High-level interaction diagrams.
+  - `02-Communication-Scenarios.md`: High-level interaction diagrams.
+  - `03-Transaction-Flow.md`: Detailed visual and textual transaction flows.
+  - `04-General-FAQ.md`: Comprehensive list of common integration and policy questions.
+  - `05-Technical-FAQ.md`: Technical FAQ.
+- **02-Development/**
   - `01-Dev-Environment-Setup.md`: Initial technical configuration.
   - `02-Encryption-Decryption.md`: Detailed logic for secured payloads.
   - `03-Header-Parameter.md`: Reference for mandatory HTTP headers.
@@ -37,9 +37,10 @@ Before responding to user queries, consult the appropriate resources in the `ref
   - `08-Developing-the-Request-Process.md`: VASP-side request implementation.
   - `09-Asset-Transfer-Status-Management.md`: State machine for transfers.
   - `10-Returning-Errors.md`: Error code reference and handling.
-  - `11-Interoperability-with-Other-Protocols.md`: Cross-protocol (GTR, etc.) guidance.
-  - `12-Go-Live-Preparation.md`: Final checklist for production deployment.
-- **3-Corporate-Travel-Rule/**
+  - `11-CodeVASP-Cipher-Server-Module-Guide.md`: Guide for Cipher Server module integration.
+  - `12-Interoperability-with-Other-Protocols.md`: Cross-protocol (GTR, etc.) guidance.
+  - `13-Go-Live-Preparation.md`: Final checklist for production deployment.
+- **03-Corporate-Travel-Rule/**
   - `01-Policy.md`: Policy framework for corporate accounts.
   - `02-Comprehensive-Guide.md`: End-to-end integration for Legal Entities.
   - `03-Creating-Travel-Rule-Objects.md`: Constructing corporate IVMS101 objects.
@@ -47,38 +48,37 @@ Before responding to user queries, consult the appropriate resources in the `ref
 
 ### 2. API Reference (`references/api/`)
 - **01-Intro/**
-  - `CodeVASP-Introduction.md`
-- **02-CodeVASP-Cipher/**
-  - `02-1.-CodeVASP-Cipher-Server-Module-Guide.md`
-  - `02-2.-Create-Header-Payload-1.Core.md`
-  - `02-2.-Create-Header-Payload-2.Addon.md`
-  - `02-3.-Encrypt.md`
-  - `02-4.-Decrypt.md`
-  - `02-5.-Health-Check.md`
+  - `01-CodeVASP-Introduction.md`
+- **02-Response-API/**
+  - `01-Getting-Started.md`
+  - `02-Virtual-Asset-Address-Search.md`
+  - `03-Asset-Transfer-Authorization.md`
+  - `04-Report-Transfer-Result.md`
+  - `05-Transaction-Status-Search.md`
+  - `06-Finish-Transfer.md`
+  - `07-Search-VASP-by-TXID.md`
+  - `08-Asset-Transfer-Data-Request.md`
+  - `09-Health-Check.md`
 - **03-Request-API/**
-  - `03-01.-VASP-List-Search.md`
-  - `03-02.-Public-Key-Search.md`
-  - `03-03.-Networks-by-Coin.md`
-  - `03-04.-Search-VASP-by-Wallet-Request.md`
-  - `03-05.-Search-VASP-by-Wallet-Result.md`
-  - `03-06.-Virtual-Asset-Address-Search.md`
-  - `03-07.-Asset-Transfer-Authorization.md`
-  - `03-08.-Report-Transfer-Result.md`
-  - `03-09.-Transaction-Status-Search.md`
-  - `03-10.-Finish-Transfer.md`
-  - `03-11.-Search-VASP-by-TXID-Request.md`
-  - `03-12.-Search-VASP-by-TXID-Result.md`
-  - `03-13.-Asset-Transfer-Data-Request.md`
-- **04-Response-API/**
-  - `04-1.-Getting-Started.md`
-  - `04-2.-Virtual-Asset-Address-Search.md`
-  - `04-3.-Asset-Transfer-Authorization.md`
-  - `04-4.-Report-Transfer-Result.md`
-  - `04-5.-Transaction-Status-Search.md`
-  - `04-6.-Finish-Transfer.md`
-  - `04-7.-Search-VASP-by-TXID.md`
-  - `04-8.-Asset-Transfer-Data-Request.md`
-  - `04-9.-Health-Check.md`
+  - `01-VASP-List-Search.md`
+  - `02-Public-Key-Search.md`
+  - `03-Networks-by-Coin.md`
+  - `04-Search-VASP-by-Wallet-Request.md`
+  - `05-Search-VASP-by-Wallet-Result.md`
+  - `06-Virtual-Asset-Address-Search.md`
+  - `07-Asset-Transfer-Authorization.md`
+  - `08-Report-Transfer-Result.md`
+  - `09-Transaction-Status-Search.md`
+  - `10-Finish-Transfer.md`
+  - `11-Search-VASP-by-TXID-Request.md`
+  - `12-Search-VASP-by-TXID-Result.md`
+  - `13-Asset-Transfer-Data-Request.md`
+- **04-CodeVASP-Cipher/**
+  - `01-Create-Header-Payload-1-Core.md`
+  - `02-Create-Header-Payload-2-Addon.md`
+  - `03-Encrypt.md`
+  - `04-Decrypt.md`
+  - `05-Health-Check.md`
 
 ### 3. Examples (`references/examples/`)
 - `asset-transfer-authorization-request-legal-2-legal-example.json`
