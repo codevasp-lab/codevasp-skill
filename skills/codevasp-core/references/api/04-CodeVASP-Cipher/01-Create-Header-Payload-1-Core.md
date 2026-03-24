@@ -24,13 +24,13 @@ For Travel Rule API requests, the data to be entered in the Header and Body is e
 
 ## Supported API Types
 
-* `SEARCH_VASP_LIST`: VASP List Search
-* `SEARCH_PUBKEY_LIST`: Public Key Search
-* `SEARCH_ADDRESS`: Virtual Asset Address Search
-* `TRANSFER_AUTHORIZATION`: Asset Transfer Authorization
-* `REPORT_TRANSFER_RESULT`: Report Transfer Result (TX Hash)
-* `SEARCH_TRANSACTION_STATUS`: Transaction Status Search
-* `FINISH_TRANSFER`: Finish Transfer
+* [`SEARCH_VASP_LIST`](#vasp-list-search): VASP List Search
+* [`SEARCH_PUBKEY_LIST`](#public-key-search): Public Key Search
+* [`SEARCH_ADDRESS`](#virtual-asset-address-search): Virtual Asset Address Search
+* [`TRANSFER_AUTHORIZATION`](#asset-transfer-authorization): Asset Transfer Authorization
+* [`REPORT_TRANSFER_RESULT`](#report-transfer-result-tx-hash): Report Transfer Result (TX Hash)
+* [`SEARCH_TRANSACTION_STATUS`](#transaction-status-search): Transaction Status Search
+* [`FINISH_TRANSFER`](#finish-transfer): Finish Transfer
 
 ---
 

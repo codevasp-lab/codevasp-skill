@@ -24,12 +24,14 @@ For Travel Rule API requests, the data to be entered in the Header and Body is e
 
 ## Supported API Types
  
-* `SEARCH_ADDRESS_REQUEST`: Search VASP by Wallet Request
-* `SEARCH_ADDRESS_RESULT`: Search VASP by Wallet Result
-* `SEARCH_TRANSACTION_ID`: Search VASP by TXID Request
-* `FETCH_TRANSACTION_ID`: Search VASP by TXID Result
-* `VERIFICATION_TRANSACTION_ID`: Asset Transfer Data Request
-* `SCREENING`: Screening
+* [`SEARCH_ADDRESS_REQUEST`](#search-vasp-by-wallet-request): Search VASP by Wallet Request
+* [`SEARCH_ADDRESS_RESULT`](#search-vasp-by-wallet-result): Search VASP by Wallet Result
+* [`SEARCH_TRANSACTION_ID`](#search-vasp-by-txid-request): Search VASP by TXID Request
+* [`FETCH_TRANSACTION_ID`](#search-vasp-by-txid-result): Search VASP by TXID Result
+* [`VERIFICATION_TRANSACTION_ID`](#asset-transfer-data-request): Asset Transfer Data Request
+* [`SCREENING`](#screening): Screening
+* [`UNHOSTED_WALLET_VERIFICATION`](#issue-unhosted-wallet-token): Issue Unhosted Wallet Token
+* [`UNHOSTED_WALLET_DATA`](#get-unhosted-wallet-verification-data): Get Unhosted Wallet verification data
 
 ---
 
@@ -352,4 +354,82 @@ For Travel Rule API requests, the data to be entered in the Header and Body is e
     "body": "{\"walletAddress\":\"sampleWallet\",\"chain\":\"ETH\"}"
 }
 ```
- 
+
+## Issue Unhosted Wallet Token
+
+### Request
+
+| Name | Required | Type    | Description                      |
+| :--- | :------- |:--------|:---------------------------------|
+| allianceName | Required    | string  | Only 'CODE' is allowed     |
+| apiType      | Required    | string  | `UNHOSTED_WALLET_VERIFICATION` |
+| request      | Required    | string  | Request Body                |
+
+```json
+{
+    "allianceName": "CODE",
+    "apiType": "UNHOSTED_WALLET_VERIFICATION",
+    "request": {
+      "blockchain": "<<blockchain>>",
+      "asset": "<<asset>>",
+      "address": "<<address>>",
+      "customerIdentification": "<<customerIdentification>>",
+      "widgetRenderingOrigin": "widgetRenderingOrigin",
+      "callbackUrl": "(Optional)<<calbackUrl>>"
+    }
+}
+```
+
+### Response
+
+| Name | Required | Type   | Description |
+| :--- | :------- |:-------| :---------- |
+| signature | Required | string | Generated Signature |
+| nonce | Required | number | Generated Nonce |
+| dateTime | Required | string | Current datetime for request |
+| publicKey | Required | string | Your Public Key |
+| body | Required | string | Generated payload |
+
+```json
+{
+    "signature": "JPtkm4oFhPEUz7yMXqDvNI1E0/PjXxgnQvflFhdV42otuppMPlUbneuWV4qcMr3Ib/uoATTIqJOUrl2oDqT/Bw==",
+    "nonce": 53726960,
+    "dateTime": "2026-01-29T06:29:08Z",
+    "publicKey": "ILIszcJToqIA7DxHWMHLd5bhUx0QUV7m3KzWRX5sJ34=",
+    "body": "{\"blockchain\":\"<<blockchain>>\",\"asset\":\"<<asset>>\",\"address\":\"<<address>>\",\"customerIdentification\":\"<<customerIdentification>>\",\"widgetRenderingOrigin\":\"<<widgetRenderingOrigin>>\",\"callbackUrl\":\"(Optional)<<callbackUrl>>\"}"
+}
+```
+
+## Get Unhosted Wallet verification data
+
+### Request
+
+| Name | Required | Type | Description |
+| :--- | :------- | :--- | :---------- |
+| allianceName | Required  | string  | Only 'CODE' is allowed           |
+| apiType      | Required  | string  | `UNHOSTED_WALLET_DATA`  |
+
+```json
+{
+    "allianceName": "CODE",
+    "apiType": "UNHOSTED_WALLET_DATA"
+}
+```
+
+### Response
+
+| Name | Required | Type   | Description |
+| :--- | :------- |:-------| :---------- |
+| signature | Required | string | Generated Signature |
+| nonce | Required | number | Generated Nonce |
+| dateTime | Required | string | Current datetime for request |
+| publicKey | Required | string | Your Public Key |
+
+```json
+{
+    "signature": "JPtkm4oFhPEUz7yMXqDvNI1E0/PjXxgnQvflFhdV42otuppMPlUbneuWV4qcMr3Ib/uoATTIqJOUrl2oDqT/Bw==",
+    "nonce": 53726960,
+    "dateTime": "2026-01-29T06:29:08Z",
+    "publicKey": "ILIszcJToqIA7DxHWMHLd5bhUx0QUV7m3KzWRX5sJ34=",
+}
+```
