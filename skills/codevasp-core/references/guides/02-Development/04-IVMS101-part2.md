@@ -322,7 +322,7 @@ graph LR
     class CEO2,LP_ID,LP_natID,CEO1_localName,O_detail,V_detail optional;
 
 ```
-* Under the 'originatorPersons' object, both a 'legalPerson' and at least one 'naturalPerson' are required.
+* Under the 'beneficiaryPersons' object, both a 'legalPerson' and at least one 'naturalPerson' are required.
 * The 'legalPerson' object contains corporate details, while 'naturalPerson' includes the corporate representative(CEO)'s information.
 * Under the 'name' object, **'nameIdentifier' is required**,  whereas 'localNameIdentifier' is optional.
 * Since **the 'nameIdentifier' is required, enter blank** if there is no matching value.
