@@ -115,7 +115,7 @@ graph LR
 
 ```
 ### To do when withdraw
-1. Acquire needed information
+1. Acquire necessary information
 	1. The originator information is populated using the data stored in our database, which was obtained during the KYB process.
 	2. The 'dateOfBirth' field under the 'naturalPerson' of the originator entity is not required. The recipient information is obtained from the customer.
 	3. The 'dateOfBirth' field under the recipient entity's 'naturalPerson' is not required.
@@ -123,8 +123,8 @@ graph LR
 2. Check for counterparty VASP's policy
 	1. Transfers involving legal entity may differ by country regulations and each VASP's internal policy.
 		1. e.g) Korean regulation: Beneficiary  CEO('naturalPerson') info under 'legalPerson' of Beneficiary is also required  
-		2.  e.g) VASP policy: Some VASPs allow transfers between 1st-party only. 
-		3.  e.g) VASP policy: Some VASPs may require all information of CEO for multi-CEO entity
+		2. e.g) VASP policy: Some VASPs allow transfers between 1st-party only. 
+		3. e.g) VASP policy: Some VASPs may require all information of CEO for multi-CEO entity
 ### To do when deposit
 1. Save sender account data
 	1. Please store it to comply with the Travel Rule.
@@ -135,7 +135,7 @@ graph LR
 	1. Based on the accountNumber (recipient wallet address), retrieve from our legal entity customer database.  
 	2. The data obtained through KYB during the customer's onboarding process must be stored in advance.
 4. Check internal policy
-	1. Verify whether our policy allows deposits for the 'legal to legal ' type.  
+	1. Verify whether our policy allows deposits for the 'legal to legal' type.  
 	2. Review which data fields must match (entity info, representative info, or both).  
 	3. If multiple representatives exist, check whether all or at least one must match.
 5. Verify beneficiary data and our user data
@@ -173,7 +173,7 @@ graph LR
     style BP_NP fill:#fce4ec,stroke:#d81b60
 ```
 ### To do when withdraw
- 1. Acquire needed information
+ 1. Acquire necessary information
 	 1. The originator information is populated using the data stored in our database, which was obtained during the KYB process.
 	 2. The 'dateOfBirth' field under the 'naturalPerson' of the originator entity is not required.
      The recipient information is obtained from the customer.
@@ -251,7 +251,7 @@ graph LR
     style sg02 fill:#fafafa,stroke:#999,stroke-dasharray: 5 5
 ```
 ### To do when withdraw
-1. Acquire needed information
+1. Acquire necessary information
 	1. The originator information is populated using the data stored in our database, which was obtained during the KYB process.
 	2. The 'dateOfBirth' field under the 'naturalPerson' of the originator entity is not required. The recipient information is obtained from the customer.
 	3. The 'dateOfBirth' field under the recipient entity's 'naturalPerson' is not required.
@@ -259,8 +259,8 @@ graph LR
 2. Check for counterparty VASP's policy
 	1. Transfers involving legal entity may differ by country regulations and each VASP's internal policy.
 		1. e.g) Korean regulation: Beneficiary  CEO('naturalPerson') info under 'legalPerson' of Beneficiary is also required  
-		2. e.g)VASP policy: Some VASPs allow transfers between 1st-party only. 
-		3. e.g)VASP policy: Some VASPs may require all information of CEO for multi-CEO entity
+		2. e.g) VASP policy: Some VASPs allow transfers between 1st-party only. 
+		3. e.g) VASP policy: Some VASPs may require all information of CEO for multi-CEO entity
 ## Tips
 ### 'naturalPerson' Data Source
 ```mermaid
@@ -327,19 +327,19 @@ graph LR
     class Note1,Note2,Note3,Note4 note
 
 ```
-#### When the Originator is a 'naturlaPerson'
-- The 'naturlaPerson' information comes from the KYC database
+#### When the Originator is a 'naturalPerson'
+- The 'naturalPerson' information comes from the KYC database
 #### When the Originator is a 'legalPerson'
-- The 'naturlaPerson' information comes from the KYB database
+- The 'naturalPerson' information comes from the KYB database
 - When processing and saving the data: 
 	- Collect both local and English names.
-	- Store first name and last name separately.
+	- Store the first name and last name separately.
 	- Design a refined fallback process for name verification.
-#### When the Beneficiary is a 'naturlaPerson'
-- The 'naturlaPerson' information comes from the origin VASP's withdrawal UI
+#### When the Beneficiary is a 'naturalPerson'
+- The 'naturalPerson' information comes from the origin VASP's withdrawal UI
 - It was entered by the user. 
 #### When the Beneficiary is a 'legalPerson'
-- The 'naturlaPerson' information comes from the origin VASP's withdrawal UI
+- The 'naturalPerson' information comes from the origin VASP's withdrawal UI
 - May require multiple name input fields
 ### 'naturalPerson' Date of Birth
 ```mermaid
