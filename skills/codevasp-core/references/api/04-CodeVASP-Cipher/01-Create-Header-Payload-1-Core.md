@@ -402,30 +402,4 @@ For Travel Rule API requests, the data to be entered in the Header and Body is e
   "body": "{\"transferId\":\"b09c8d00-8da9-11ec-b909-0242ac120002\",\"status\":\"canceled\",\"reasonType\":\"SANCTION_LIST\"}"
 }
 ```
-
-## Example (Generic)
-
-### Request
-```bash
-curl --request POST \
-     --url https://your-server-host.com/api/v1/code/api-payloads \
-     --header 'accept: application/json' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "allianceName": "code",
-  "apiType": "Types",
-  "remotePublicKey": "remotePublicKey",
-  "request": "request"
-}'
-```
-
-### Response
-```json
-{
-  "signature": "siBkH9hov/7yfU8bedguB0mMIdt04DQUnB85mVPpzrMr8i+SYl3Pn46U2kvjrxEzwCSaH5E5W0nFsPyRfHbNCw==",
-  "nonce": 803400752,
-  "dateTime": "2023-06-21T05:25:52Z",
-  "publicKey": "LOpv3Vd7PKLrlDmk/MFi6mc2rPWhi3G0H3D74dayxSo="
-}
-```
+ 
