@@ -17,9 +17,9 @@ Please ensure that **❗the 'entityId': 'codevasp' should be granted access to a
 7. Asset Transfer Data Request
 8. Health Check
 
-The above 8 endpoints must be implemented, and individual requirements can be found in the 'Response API' category of the guide.
+The above 8 endpoints must be implemented, and individual requirements can be found in the 'Response API' category of the API reference.
 
-Once deployed in the development environment, you can test it directly on the dashboard. 
+Once deployed in the development environment, you can test it directly on the dashboard.
 
 For more details, please refer to the [# 07 - Developing the Response Process]
 and [# 08 - Developing the Request Process] pages.
