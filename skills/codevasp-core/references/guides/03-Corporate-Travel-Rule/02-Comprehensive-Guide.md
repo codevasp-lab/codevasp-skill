@@ -1,4 +1,4 @@
-# 02_Comprehensive_Guide
+# 02-Comprehensive-Guide
 
 ## Originator: Sender's Data Type
 ```mermaid

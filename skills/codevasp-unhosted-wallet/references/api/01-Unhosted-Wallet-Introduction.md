@@ -1,4 +1,4 @@
-# 1. Unhosted Wallet Intro
+# 01-Unhosted-Wallet-Introduction
 
 Unhosted Wallet Verification validates wallet ownership based on a **signature proof** from a user's personal (unhosted) wallet.
 

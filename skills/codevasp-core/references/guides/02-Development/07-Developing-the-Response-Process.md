@@ -1,4 +1,4 @@
-# 07 - Developing the Response Process
+# 07-Developing-the-Response-Process
 
 ## 1. Before You Start 
 * We recommend developing the receiving first to better understand the encryption and decryption process.

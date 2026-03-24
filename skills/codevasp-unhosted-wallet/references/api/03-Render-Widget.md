@@ -1,4 +1,4 @@
-# 3. Render Widget
+# 03-Render-Widget
 
 * Dev: [https://wallet-verifier-dev.codevasp.com/widget/wallet-verifier.js](https://wallet-verifier-dev.codevasp.com/widget/wallet-verifier.js)
 * Prod: [https://wallet-verifier.codevasp.com/widget/wallet-verifier.js](https://wallet-verifier.codevasp.com/widget/wallet-verifier.js)

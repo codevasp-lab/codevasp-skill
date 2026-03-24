@@ -1,4 +1,4 @@
-# 05 - Verifying Wallet Address
+# 05-Verifying-Wallet-Address
 
 A wallet address may have various formats, combining the address itself, a tag or memo, and a delimiter. It's crucial to note that in the IVMS101 protocol, this entire combination is treated as a single string. Thus, there are 4 possible formats of wallet addresses.
 

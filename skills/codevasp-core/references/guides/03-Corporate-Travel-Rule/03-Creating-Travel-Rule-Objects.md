@@ -1,4 +1,4 @@
-# 03_Creating_Travel_Rule_Objects
+# 03-Creating-Travel-Rule-Objects
 
 * This guide is intended for developers handling Travel Rule data.
 ## 1. Getting Started

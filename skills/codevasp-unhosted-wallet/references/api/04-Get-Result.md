@@ -1,4 +1,4 @@
-# 4. Get Result
+# 04-Get-Result
 
 Get the unhosted wallet verification results based on the Verification Session ID. If a callback URL was configured during token issuance, the same data format will be delivered upon successful verification.
 

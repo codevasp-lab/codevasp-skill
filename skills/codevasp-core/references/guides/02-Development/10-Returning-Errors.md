@@ -1,4 +1,4 @@
-# 10 - Returning Errors
+# 10-Returning-Errors
 
 This chapter describes the error response which is used in common by all APIs of the CodeVASP solution.
 All APIs in the code are designed to return an error response which combines Status Code, Error Type, and ErrorMsg described below when an error occurs while processing the request.

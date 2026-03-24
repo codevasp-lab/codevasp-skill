@@ -1,4 +1,4 @@
-# 01_Policy
+# 01-Policy
 
 ## 1. Intro
 ### 1-1. Core Concept

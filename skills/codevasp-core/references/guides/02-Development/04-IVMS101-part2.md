@@ -1,4 +1,4 @@
-# 04 - IVMS101-part2
+# 04-IVMS101-part2
 
 # 3. IVMS101 Required Fields
 ```mermaid

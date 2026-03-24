@@ -1,4 +1,4 @@
-# 04 - IVMS101-part1
+# 04-IVMS101-part1
 
 # 1. IVMS101
 - IVMS101 is a standardized Travel Rule data format for secure and interoperable exchange between VASPs.

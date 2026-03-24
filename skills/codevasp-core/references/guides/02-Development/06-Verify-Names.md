@@ -1,4 +1,4 @@
-# 06 - Verify Names
+# 06-Verify-Names
 
 ## General Rules
 

@@ -1,4 +1,4 @@
-# 1. Uppsala Wallet Screening
+# 01-Uppsala-Wallet-Screening
 
 By providing a virtual asset wallet address, this API detects the risks related to the wallet address.
 

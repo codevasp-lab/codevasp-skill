@@ -1,4 +1,4 @@
-# 2. Uppsala TXID Screening
+# 02-Uppsala-TXID-Screening
 
 By providing a blockchain transaction id(hash), this API detects the risks related to the wallet addresses that are related to the txid.
 

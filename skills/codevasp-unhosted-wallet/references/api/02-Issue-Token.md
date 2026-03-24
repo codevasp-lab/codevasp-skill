@@ -1,4 +1,4 @@
-# 2. Issue Token
+# 02-Issue-Token
 
 This API issues a token and a `walletVerificationId` for Unhosted Wallet verification.
 

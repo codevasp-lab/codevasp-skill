@@ -1,4 +1,4 @@
-# 01_Integration_Process
+# 01-Integration-Process
 
 ```mermaid
 graph TD
