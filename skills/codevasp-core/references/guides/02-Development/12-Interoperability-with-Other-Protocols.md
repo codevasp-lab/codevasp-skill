@@ -11,7 +11,7 @@
 ### **List of Available VASPs**
 > **Information Note:**
 > * Dashboar will display the list of VASPs that you can integrate via CodeVASP, actual integration status may vary depending on your internal policy.
-> * The 'Server Status' represents the VASP’s server condition, not integration status. May differ from real-time information.
+> * The 'Server Status' represents the VASP's server condition, not integration status. May differ from real-time information.
 > * Exchanges integrated with the VerifyVASP solution support only domestic transactions within South Korea, transactions with exchanges outside Korea are not possible.
  
 By checking the response of the 'VASP List Search' API or the 'Info - List of Available VASPs' page on the dashboard, you can view the list of VASPs and their respective `allianceName` (travel rule solution). Currently, CodeVASP is integrated with solutions such as Verify VASP, GTR, and Sygna, providing a wide-ranging network.

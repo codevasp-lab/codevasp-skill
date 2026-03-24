@@ -61,11 +61,11 @@ graph TD
 graph TD
 %% Node Definitions
   step1["1. Incoming asset deposit transaction"]
-  step2["2. ‘Search VASP by Txid: BINANCE"]
+  step2["2. 'Search VASP by Txid': BINANCE"]
   step3["3. Binance specific policy"]
   step4["4. Get KYC/KYB info"]
-  step5["5. Verify with ‘Asset Transfer Data Request"]
-  step6["6. Confirm ‘normal’ reponse"]
+  step5["5. Verify with 'Asset Transfer Data Request'"]
+  step6["6. Confirm 'normal' reponse"]
 
 %% Flow Connections
   step1 --> step2

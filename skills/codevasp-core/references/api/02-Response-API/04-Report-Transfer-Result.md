@@ -6,9 +6,9 @@
     * receive the txid from the originating VASP and return an appropriate response
     * save the txid
     * map the travel rule data(trasnfer id) with the txid
-* The typical process is approval to 'Asset Transfer Authorization' -> on-chain detection -> txid receipt. However, depending on each VASP’s node operation method and circumstances, the order of on-chain detection and txid receipt may vary.
+* The typical process is approval to 'Asset Transfer Authorization' -> on-chain detection -> txid receipt. However, depending on each VASP's node operation method and circumstances, the order of on-chain detection and txid receipt may vary.
 * Therefore, be aware that **you may receive a txid before the on-chain transaction is detected**.
-* In such cases, it is recommended to first return a normal response to the 'Report Transfer Result (TX Hash)' request, then confirm the on-chain data and update the customer’s asset accordingly.
+* In such cases, it is recommended to first return a normal response to the 'Report Transfer Result (TX Hash)' request, then confirm the on-chain data and update the customer's asset accordingly.
 * This entire process assumes the integrity of the protocol and trusts that the counterparty VASP will not transmit an invalid txid.
 
 ## Endpoint
