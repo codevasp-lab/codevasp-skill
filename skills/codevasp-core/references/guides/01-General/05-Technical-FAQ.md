@@ -134,7 +134,7 @@ The `currency` field should be the **coin symbol** (also known as the coin ticke
 **Example:** Transferring 2 BTC at a current price of $42,708:
 > 42,708 × 2 = **$85,416**
 
-```json
+```text
 "tradePrice": "85416",
 "tradeCurrency": "USD"
 ```
