@@ -75,7 +75,7 @@ Returns a list of VASPs that have completed integration with CodeVASP. This refe
 ## Examples
 
 ### Request
-```json
+```bash
 curl --request GET \
      --url https://trapi-dev.codevasp.com/v1/code/vasps \
      --header 'X-Code-Req-Datetime: 2024-03-04T15:10Z' \
