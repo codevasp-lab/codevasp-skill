@@ -58,9 +58,9 @@ Provided your own test data on dashboard and save:
 * **TC-B** Asset Transfer Authorization
 * **TC-C** Report Transfer Result (TX Hash)
 * **TC-D** Finish Transfer
-* **TC-E** Health Check
-* **TC-F** Verify Wallet Address that contain :
-* Search VASP By TXID
+* **TC-E** Search VASP By TXID
+* **TC-F** Asset Transfer Data Request :
+* **TC-G** Health Check
 
 ---
 
