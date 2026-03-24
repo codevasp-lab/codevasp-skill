@@ -28,7 +28,7 @@ This is an error returned by the CodeVASP API server when failing to check the p
   * INVALID\_ORIGIN: The value of header origin is not correct. VaspEntityId cannot be found or AllianceName is not valid.
   * INVALID_BENEFICIARY: The beneficiary VASP is not valid. This occurs when the API requires a beneficiary VASP but the provided VASP is invalid or cannot be found.
 * errorMsg: This is used to convey detailed information on the ErrorType. This is optional. 
-```
+```json
 {
   "errorType": "INVALID_TARGET_VASP_ID",
   "errorMsg": "VaspEntityId received is."
@@ -45,7 +45,7 @@ This is an error returned by the CodeVASP API server when the CodeVASP API serve
   * BENEFICIARY\_VASP\_REQUEST\_TIMEOUT
 * errorMsg: This is used to convey detailed information on the ErrorType. This is optional. 
 
-```
+```json
 {
   "errorType": "BENEFICIARY_VASP_REQUEST_TIMEOUT",
   "errorMsg": "Beneficiary VASP does not respond."
@@ -60,7 +60,7 @@ Specific APIs that can affect the performance of the entire system limit the num
 * errorType: Error type
   * TOO\_MANY\_REQUESTS
 * errorMsg: This is used to convey detailed information on the ErrorType. This is optional. 
-```
+```json
 {
   "errorType": "TOO_MANY_REQUESTS",
   "errorMsg": "The request has exceeded the limit (40) per minute, source IP."
@@ -79,7 +79,7 @@ This returns this kind of error when an error occurs while the CodeVASP API proc
   * CODE\_SERVER\_INTERNAL\_ERROR: An error occurred while the CodeVASP server processes a request.
 * errorMsg: This is used to convey detailed information on the ErrorType. This is optional. 
 
-```
+```json
 {
   "errorType": "CODE_SERVER_INTERNAL_ERROR",
   "errorMsg": "An internal error occurs while processing."
@@ -105,7 +105,7 @@ Status Code and ErrorType classification do not completely match CodeVASP API se
   * UNACCEPTABLE\_REQUEST: It is an unprocessable request. The content of the request cannot be processed by the VASP that received it.
 * errorMsg: This is used to convey detailed information on the ErrorType. This is optional. 
 
-```
+```json
 {
   "errorType": "VASP_BACKEND_INTERNAL_ERROR",
   "errorMsg": "An VASP backend server failed to process request."
