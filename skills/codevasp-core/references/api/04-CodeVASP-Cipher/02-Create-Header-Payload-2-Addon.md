@@ -1,6 +1,6 @@
 # 02-Create-Header-Payload-2-Addon
 
-For Travel Rule API requests, the data to be entered in the Header and Body is encrypted and provided as a response. It is convenient to use the values received as is for the corresponding Travel Rule API according to each API type.
+For Addon service API requests, the data to be entered in the Header and Body is encrypted and provided as a response. It is convenient to use the values received as is for the corresponding API according to each API type.
 
 ## Endpoint
 
