@@ -1,4 +1,4 @@
-# 05-Uppsala-KYT-Search
+# 04-Uppsala-KYT-Search
 
 By providing a blockchain transaction hash, this API submits a KYT (Know Your Transaction) analysis request to Uppsala Sentinel Protocol. If a cached result exists, it returns immediately; otherwise, the analysis runs asynchronously.
 
@@ -61,7 +61,7 @@ Use the KYT Report API ([05-Uppsala-KYT-Report.md]) to retrieve the analysis res
 
 ## Callback
 
-If `callbackUrl` is provided, the analysis result is delivered via `POST` to that URL when the analysis completes (status becomes `RELEASED` or `FAILED`). The callback body has the same structure as the KYT Report API response. See [07-Uppsala-KYT-Callback.md](06-Uppsala-KYT-Callback.md) for details.
+If `callbackUrl` is provided, the analysis result is delivered via `POST` to that URL when the analysis completes (status becomes `RELEASED` or `FAILED`). The callback body has the same structure as the KYT Report API response. See [06-Uppsala-KYT-Callback.md] for details.
 
 ## Errors
 
