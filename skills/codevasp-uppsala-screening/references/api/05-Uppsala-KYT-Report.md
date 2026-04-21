@@ -70,8 +70,8 @@ When `status` is `RELEASED`, the `report` field contains the full analysis resul
 | generatedAt | datetime | Report generation timestamp. |
 | senders | string[] | List of sender addresses. UTXO chains (BTC/LTC) may have multiple senders. |
 | riskIndicators | object | Detected risk indicators. See Risk Indicators section below. |
-| annotations | map<string, object> | Address-to-label mapping for addresses found in the transaction path. |
-| byToken | map<string, object> | Amount breakdown by token symbol (e.g., ETH, USDT, BTC). Separates risk amounts per token for EVM multi-token transactions. |
+| annotations | `map<string, object>` | Address-to-label mapping for addresses found in the transaction path. |
+| byToken | `map<string, object>` | Amount breakdown by token symbol (e.g., ETH, USDT, BTC). Separates risk amounts per token for EVM multi-token transactions. |
 
 ### Verdict Logic
 
