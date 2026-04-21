@@ -1,6 +1,6 @@
 # 06-Uppsala-KYT-Report
 
-Retrieves the KYT analysis report using the `requestId` returned by the KYT Search API ([05-Uppsala-KYT-Search.md](04-Uppsala-KYT-Search.md)).
+Retrieves the KYT analysis report using the `requestId` returned by the KYT Search API ([05-Uppsala-KYT-Search.md]).
 
 The response structure varies depending on the analysis status: `PENDING` (still processing), `RELEASED` (completed), or `FAILED` (analysis failed).
 
@@ -50,7 +50,7 @@ No request body is required.
 > **Troubleshooting `Tx hash not found`**: This error occurs when:
 > 1. The transaction hash does not exist on the specified blockchain.
 > 2. The transaction is unconfirmed (pending in mempool) — retry after block confirmation.
-> 3. The `blockchain` value submitted in [05-Uppsala-KYT-Search.md](04-Uppsala-KYT-Search.md) does not match the actual chain of the transaction (e.g., an EVM hash submitted with `blockchain: "TRX"`).
+> 3. The `blockchain` value submitted in [05-Uppsala-KYT-Search.md] does not match the actual chain of the transaction (e.g., an EVM hash submitted with `blockchain: "TRX"`).
 
 ---
 

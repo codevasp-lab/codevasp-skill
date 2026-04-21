@@ -2,7 +2,7 @@
 
 By providing a blockchain transaction hash, this API submits a KYT (Know Your Transaction) analysis request to Uppsala Sentinel Protocol. If a cached result exists, it returns immediately; otherwise, the analysis runs asynchronously.
 
-Use the KYT Report API ([06-Uppsala-KYT-Report.md](05-Uppsala-KYT-Report.md)) to retrieve the analysis result, or provide a `callbackUrl` to receive the result via webhook when the analysis completes.
+Use the KYT Report API ([05-Uppsala-KYT-Report.md]) to retrieve the analysis result, or provide a `callbackUrl` to receive the result via webhook when the analysis completes.
 
 > **Note**: This API is jointly operated by CodeVASP and Uppsala Security. For inquiries or access requests, please contact [partnership@codevasp.com](mailto:partnership@codevasp.com).
 

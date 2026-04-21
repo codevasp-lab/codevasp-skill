@@ -6,9 +6,9 @@ The development environment provides fixed test cases, allowing users to verify 
 
 * **Scope**: This document covers development-only supported networks, preset test cases, request retention policy, response behaviors, processing delays, callback timing, and test-environment-specific errors.
 * **Related APIs**: 
-  - KYT Search ([05-Uppsala-KYT-Search.md](04-Uppsala-KYT-Search.md)): Create requests. 
-  - KYT Report ([06-Uppsala-KYT-Report.md](05-Uppsala-KYT-Report.md)): Poll analysis results. 
-  - KYT Callback ([07-Uppsala-KYT-Callback.md](06-Uppsala-KYT-Callback.md)): Reference for when callbackUrl is enabled.
+  - KYT Search ([05-Uppsala-KYT-Search.md]): Create requests. 
+  - KYT Report ([06-Uppsala-KYT-Report.md]): Poll analysis results. 
+  - KYT Callback ([07-Uppsala-KYT-Callback.md]): Reference for when callbackUrl is enabled.
 
 ## Supported Networks
 
@@ -32,7 +32,7 @@ Submit one of the following `(blockchain, txHash)` pairs to trigger a specific a
 
 Any pair not listed above will simulate a failed analysis, returning a `FAILED` status with the reason `"Tx hash not found"`.
 
-The dummy report bodies for each preset follow the schema documented in [06-Uppsala-KYT-Report.md](05-Uppsala-KYT-Report.md).
+The dummy report bodies for each preset follow the schema documented in [06-Uppsala-KYT-Report.md].
 
 ## Response Behavior
 
@@ -56,6 +56,6 @@ Integrators must poll the result or verify the callback within this window. Afte
 
 When `callbackUrl` is configured:
 
-- Cached Results: Callbacks for cached paths follow the flow defined in [07-Uppsala-KYT-Callback.md](06-Uppsala-KYT-Callback.md).
+- Cached Results: Callbacks for cached paths follow the flow defined in [07-Uppsala-KYT-Callback.md].
 
 - Asynchronous Results: For `force=true` or Unsupported cases, the callback is sent after a 3-second processing delay.

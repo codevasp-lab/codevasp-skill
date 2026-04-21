@@ -1,6 +1,6 @@
 # 07-Uppsala-KYT-Callback
 
-When a `callbackUrl` is provided in the KYT Search request ([05-Uppsala-KYT-Search.md](04-Uppsala-KYT-Search.md)), the analysis result is delivered via POST to that URL upon completion or failure.
+When a `callbackUrl` is provided in the KYT Search request ([05-Uppsala-KYT-Search.md]), the analysis result is delivered via POST to that URL upon completion or failure.
 
 > **Note**: This API is jointly operated by CodeVASP and Uppsala Security. For inquiries or access requests, please contact [partnership@codevasp.com](mailto:partnership@codevasp.com).
 
@@ -24,16 +24,16 @@ When a `callbackUrl` is provided in the KYT Search request ([05-Uppsala-KYT-Sear
 
 ## Callback Body
 
-The callback body has the same structure as the KYT Report API ([06-Uppsala-KYT-Report.md](05-Uppsala-KYT-Report.md)) response.
+The callback body has the same structure as the KYT Report API ([06-Uppsala-KYT-Report.md]) response.
 
 ### Fields
-| Name | Type | Nullable | Description |
-| :--- | :--- | :------- | :---------- |
-| requestId | integer | No | The search request ID. |
-| status | string | No | `RELEASED` or `FAILED`. |
-| error | string | Yes | Error description. Present only when status is `FAILED`. |
-| submittedAt | datetime | No | Timestamp when the analysis was requested. |
-| report | object | Yes | Full analysis report. Present only when status is `RELEASED`. See [06-Uppsala-KYT-Report.md](05-Uppsala-KYT-Report.md) for the full report object specification. |
+| Name | Type | Nullable | Description                                                                                                                            |
+| :--- | :--- | :------- |:---------------------------------------------------------------------------------------------------------------------------------------|
+| requestId | integer | No | The search request ID.                                                                                                                 |
+| status | string | No | `RELEASED` or `FAILED`.                                                                                                                |
+| error | string | Yes | Error description. Present only when status is `FAILED`.                                                                               |
+| submittedAt | datetime | No | Timestamp when the analysis was requested.                                                                                             |
+| report | object | Yes | Full analysis report. Present only when status is `RELEASED`. See [06-Uppsala-KYT-Report.md] for the full report object specification. |
 
 ## Examples
 
@@ -88,4 +88,4 @@ The callback body has the same structure as the KYT Report API ([06-Uppsala-KYT-
 
 - Callbacks are sent asynchronously. There is no retry on failure — the callback is attempted once regardless of the receiver's response status.
 - The callback endpoint must use HTTPS only.
-- For the full `report` object field descriptions, refer to [06-Uppsala-KYT-Report.md](05-Uppsala-KYT-Report.md).
+- For the full `report` object field descriptions, refer to [06-Uppsala-KYT-Report.md].
