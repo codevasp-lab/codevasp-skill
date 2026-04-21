@@ -88,7 +88,7 @@ When `status` is `RELEASED`, the `report` field contains the full analysis resul
 | Field | Type | Description |
 | :--- | :--- | :---------- |
 | blacklistedAddresses | string[] | Uppsala blacklist matched addresses. |
-| suspiciousServices | map<address, label> | High-risk services in the trace path. |
+| suspiciousServices | `map<address, label>` | High-risk services in the trace path. |
 | behavioralPatterns | object | Behavioral pattern detections. |
 | transactionPatterns | object | Transaction pattern detections. |
 | mlFeatures | `map<string, integer>` | ML model laundering detections. Value is `1` (detected). |
@@ -97,7 +97,7 @@ When `status` is `RELEASED`, the `report` field contains the full analysis resul
 
 Addresses matching the Uppsala blacklist. **If non-empty, the verdict is always `Malicious`.** These are wallets directly linked to hacking, scams, darknet, or theft.
 
-#### `suspiciousServices` (map<address, label>)
+#### `suspiciousServices` (`map<address, label>`)
 
 Addresses identified as high-risk services in the trace path. Label examples: `Mixer`, `Tumbler`, `Gambling`, `Darknet Market`.
 
