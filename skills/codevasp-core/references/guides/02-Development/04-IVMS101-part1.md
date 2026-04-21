@@ -211,7 +211,7 @@ When beneficiary VASP response to originator, it should complete the IVMS101 for
 
 | Name                   | Required | Type                                        | Description                                                                           |
 | :--------------------- | :------- | :------------------------------------------ | :------------------------------------------------------------------------------------ |
-| name                  | Required | NaturalPersonName   | An object designed to contain name information.                                       |
+| name                  | Required | NaturalPersonName   | An object designed to contain name information.                                       |
 | dateAndPlaceOfBirth    | Optional | DateAndPlaceOfBirth | An object designed to contain information about the date of birth and place of birth. |
 | customerIdentification | Optional | String                                      | An identifier (UID or IDX) assigned by a VASP to distinguish users.                   |
 | countryOfResidence     | Optional | CountryCode                 | Information about the country of residence.                                           |
